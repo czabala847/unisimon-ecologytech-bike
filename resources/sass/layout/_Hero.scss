@@ -1,0 +1,71 @@
+/****************************************\
+|                  HERO                  |
+\****************************************/
+
+.Hero {
+    position: relative;
+    color: $color-white;
+
+    & .overlay-deg {
+        @extend .position-absolute;
+        background: rgb(0, 0, 0);
+        background: radial-gradient(
+            circle,
+            rgba(0, 0, 0, 0) 0%,
+            rgba(0, 0, 0, 1) 100%
+        );
+        z-index: 6;
+    }
+
+    & .overlay-texture {
+        @extend .position-absolute;
+        background-image: url("../../images/cross-stripes.png");
+        opacity: 0.5;
+        z-index: 7;
+    }
+
+    & video {
+        @extend .position-absolute;
+        object-fit: cover;
+        z-index: 5;
+    }
+
+    & .caption {
+        position: relative;
+        z-index: 10;
+    }
+
+    &::after {
+        @extend .position-absolute;
+        content: "";
+        background-color: rgba(0, 0, 0, 0.6);
+        z-index: 5;
+    }
+
+    & h1 {
+        font-size: 4rem;
+        margin-bottom: 2rem;
+    }
+}
+
+@media only screen and (max-width: 1024px) {
+    .Hero {
+        padding: 0 1rem;
+    }
+}
+
+@media only screen and (max-width: 768px) {
+    .Hero {
+        & h1 {
+            font-size: 3rem;
+        }
+    }
+}
+
+@media only screen and (max-width: 425) {
+    .Hero {
+        & h1 {
+            font-size: 2rem;
+        }
+    }
+}

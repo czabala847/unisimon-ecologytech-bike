@@ -1,0 +1,27 @@
+/****************************************\
+|                  SERVICES              |
+\****************************************/
+
+.Services {
+    position: relative;
+
+    &__icon {
+        // border: 1px solid red;
+        // @extend .position-absolute;
+        position: absolute;
+        right: 0;
+        top: 0;
+        // left: 50%;
+        // bottom: 50%;
+        font-size: 12rem;
+        opacity: 0.1;
+    }
+
+    & article {
+        transition: 0.3s;
+    }
+
+    & article:hover {
+        transform: scale(1.05);
+    }
+}

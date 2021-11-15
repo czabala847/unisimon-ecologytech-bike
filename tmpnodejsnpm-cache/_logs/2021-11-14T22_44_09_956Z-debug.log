@@ -1,0 +1,39 @@
+0 info it worked if it ends with ok
+1 verbose cli [
+1 verbose cli   'C:\\Program Files\\nodejs\\node.exe',
+1 verbose cli   'C:\\Program Files\\nodejs\\node_modules\\npm\\bin\\npm-cli.js',
+1 verbose cli   'run',
+1 verbose cli   'watch'
+1 verbose cli ]
+2 info using npm@6.14.15
+3 info using node@v14.18.1
+4 verbose run-script [ 'prewatch', 'watch', 'postwatch' ]
+5 info lifecycle @~prewatch: @
+6 info lifecycle @~watch: @
+7 verbose lifecycle @~watch: unsafe-perm in lifecycle true
+8 verbose lifecycle @~watch: PATH: C:\Program Files\nodejs\node_modules\npm\node_modules\npm-lifecycle\node-gyp-bin;C:\xampp\htdocs\unisimon-ecologitech-bike\node_modules\.bin;C:\Users\Carlos Zabala\bin;C:\Program Files\Git\mingw64\bin;C:\Program Files\Git\usr\local\bin;C:\Program Files\Git\usr\bin;C:\Program Files\Git\usr\bin;C:\Program Files\Git\mingw64\bin;C:\Program Files\Git\usr\bin;C:\Users\Carlos Zabala\bin;C:\Program Files (x86)\Common Files\Oracle\Java\javapath;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0;C:\Windows\System32\OpenSSH;C:\xampp\php;C:\xampp\php5_6;C:\ProgramData\ComposerSetup\bin;C:\Program Files\Git\cmd;C:\Program Files\nodejs;C:\Users\Carlos Zabala\AppData\Local\Programs\Python\Python39\Scripts;C:\Users\Carlos Zabala\AppData\Local\Programs\Python\Python39;C:\Users\Carlos Zabala\AppData\Local\Microsoft\WindowsApps;C:\Users\Carlos Zabala\AppData\Local\Programs\Microsoft VS Code\bin;C:\Users\Carlos Zabala\AppData\Roaming\Composer\vendor\bin;C:\window;C:\windows\system32;C:\windows\system32\wbem";C:\Users\Carlos Zabala\AppData\Roaming\npm;C:\Program Files\Git\usr\bin\vendor_perl;C:\Program Files\Git\usr\bin\core_perl
+9 verbose lifecycle @~watch: CWD: C:\xampp\htdocs\unisimon-ecologitech-bike
+10 silly lifecycle @~watch: Args: [ '/d /s /c', 'npm run development -- --watch' ]
+11 silly lifecycle @~watch: Returned: code: 1  signal: null
+12 info lifecycle @~watch: Failed to exec watch script
+13 verbose stack Error: @ watch: `npm run development -- --watch`
+13 verbose stack Exit status 1
+13 verbose stack     at EventEmitter.<anonymous> (C:\Program Files\nodejs\node_modules\npm\node_modules\npm-lifecycle\index.js:332:16)
+13 verbose stack     at EventEmitter.emit (events.js:400:28)
+13 verbose stack     at ChildProcess.<anonymous> (C:\Program Files\nodejs\node_modules\npm\node_modules\npm-lifecycle\lib\spawn.js:55:14)
+13 verbose stack     at ChildProcess.emit (events.js:400:28)
+13 verbose stack     at maybeClose (internal/child_process.js:1058:16)
+13 verbose stack     at Process.ChildProcess._handle.onexit (internal/child_process.js:293:5)
+14 verbose pkgid @
+15 verbose cwd C:\xampp\htdocs\unisimon-ecologitech-bike
+16 verbose Windows_NT 10.0.19042
+17 verbose argv "C:\\Program Files\\nodejs\\node.exe" "C:\\Program Files\\nodejs\\node_modules\\npm\\bin\\npm-cli.js" "run" "watch"
+18 verbose node v14.18.1
+19 verbose npm  v6.14.15
+20 error code ELIFECYCLE
+21 error errno 1
+22 error @ watch: `npm run development -- --watch`
+22 error Exit status 1
+23 error Failed at the @ watch script.
+23 error This is probably not a problem with npm. There is likely additional logging output above.
+24 verbose exit [ 1, true ]

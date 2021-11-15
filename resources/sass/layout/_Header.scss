@@ -1,0 +1,15 @@
+/****************************************\
+|                  HEADER                |
+\****************************************/
+
+.Header {
+    position: fixed;
+    z-index: 20;
+    width: 100%;
+    background-color: rgba(0, 0, 0, 0.1);
+    transition: 0.3s;
+
+    & a {
+        color: $color-white !important;
+    }
+}
