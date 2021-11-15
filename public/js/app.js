@@ -37623,6 +37623,27 @@ module.exports = function(module) {
 
 /***/ }),
 
+/***/ "./resources/js/Admin/Categories/index.js":
+/*!************************************************!*\
+  !*** ./resources/js/Admin/Categories/index.js ***!
+  \************************************************/
+/*! exports provided: initCategories */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "initCategories", function() { return initCategories; });
+var test = function test() {// alert("funcionando");
+};
+
+var initCategories = function initCategories() {
+  window.addEventListener("DOMContentLoaded", test);
+};
+
+
+
+/***/ }),
+
 /***/ "./resources/js/Home/index.js":
 /*!************************************!*\
   !*** ./resources/js/Home/index.js ***!
@@ -37671,10 +37692,13 @@ var initHome = function initHome() {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _Home_index_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./Home/index.js */ "./resources/js/Home/index.js");
+/* harmony import */ var _Admin_Categories_index_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Admin/Categories/index.js */ "./resources/js/Admin/Categories/index.js");
 __webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js");
 
 
+
 Object(_Home_index_js__WEBPACK_IMPORTED_MODULE_0__["initHome"])();
+Object(_Admin_Categories_index_js__WEBPACK_IMPORTED_MODULE_1__["initCategories"])();
 
 /***/ }),
 

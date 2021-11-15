@@ -21,10 +21,7 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
-Auth::routes();
+Route::resource('admin/categorias', 'CategoryController')->names('categories');
 
-Route::get('/home', 'HomeController@index')->name('home');
-
-Route::resource('/bicicleta', 'BikeController')->names('bikes');
 
 // Route::get('/alquiler', '')

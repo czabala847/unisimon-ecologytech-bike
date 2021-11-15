@@ -247,6 +247,12 @@ return [
             'can'  => 'manage-blog',
         ],
         [
+            'text'        => 'Categorias',
+            'url'         => 'admin/categorias',
+            'icon'        => 'fas fa-tags',
+            'label_color' => 'success',
+        ],
+        [
             'text'        => 'pages',
             'url'         => 'admin/pages',
             'icon'        => 'far fa-fw fa-file',
