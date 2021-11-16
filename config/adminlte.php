@@ -253,6 +253,12 @@ return [
             'label_color' => 'success',
         ],
         [
+            'text'        => 'Bicicletas',
+            'url'         => 'admin/bicicletas',
+            'icon'        => 'fas fa-bicycle',
+            'label_color' => 'success',
+        ],
+        [
             'text'        => 'pages',
             'url'         => 'admin/pages',
             'icon'        => 'far fa-fw fa-file',

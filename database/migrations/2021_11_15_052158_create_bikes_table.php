@@ -15,7 +15,15 @@ class CreateBikesTable extends Migration
     {
         Schema::create('bikes', function (Blueprint $table) {
             $table->id();
+
+            $table->unsignedBigInteger('category_id');
+            $table->unsignedBigInteger('sku_id');
+
+            $table->softDeletes();
             $table->timestamps();
+
+            $table->foreign('category_id')->references('id')->on('categories');
+            $table->foreign('sku_id')->references('id')->on('skus');
         });
     }
 

@@ -15,7 +15,15 @@ class CreateAttributesTable extends Migration
     {
         Schema::create('attributes', function (Blueprint $table) {
             $table->id();
+
+            $table->unsignedBigInteger('sku_id');
+            $table->string('attribute', 20);
+            $table->string('value', 50);
+
+            $table->softDeletes();
             $table->timestamps();
+
+            $table->foreign('sku_id')->references('id')->on('skus');
         });
     }
 
