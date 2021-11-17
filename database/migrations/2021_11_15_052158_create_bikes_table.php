@@ -18,7 +18,7 @@ class CreateBikesTable extends Migration
 
             $table->unsignedBigInteger('category_id');
             $table->unsignedBigInteger('sku_id');
-
+            $table->char('status', 1);
             $table->softDeletes();
             $table->timestamps();
 

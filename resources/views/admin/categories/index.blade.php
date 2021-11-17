@@ -37,7 +37,7 @@
         <div class="card">
             <div class="card-body">
                 <div class="table-responsive">
-                    <table class="table">
+                    <table class="table" id="category_table">
                         <thead>
                             <tr>
                                 <th scope="col">#</th>
@@ -56,10 +56,12 @@
                                     <td>{{ $category->status }}</td>
                                     <td>
                                         <button class="btn btn-warning">
-                                            Actualizar
+                                            <i class="fas fa-edit"></i>
+                                            <span>Editar</span>
                                         </button>
                                         <button class="btn btn-danger">
-                                            Eliminar
+                                            <i class="fas fa-trash-alt"></i>
+                                            <span>Eliminar</span>
                                         </button>
                                     </td>
                                 </tr>
