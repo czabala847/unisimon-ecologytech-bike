@@ -1,4 +1,7 @@
+import { getData } from "../../utils/FetchData";
+
 const $table = document.querySelector("#category_table") || null;
+const $modal = document.querySelector("#modalCategory") || null;
 
 const initDataTable = () => {
     if ($table) {
@@ -18,10 +21,39 @@ const initDataTable = () => {
     }
 };
 
-const editCategory = () => {
+const getCategory = async (idCategory) => {
+    const url = `admin/categorias/${idCategory}`;
+
+    try {
+        const response = await getData(url);
+        if (response.ok === true && response.status === 200) {
+            return response.data.data;
+        }
+    } catch (error) {
+        console.log(error);
+    }
+};
+
+const showModalEdit = () => {
     if ($table) {
-        $table.addEventListener("click", (e) => {
-            debugger;
+        $table.addEventListener("click", async (e) => {
+            const btn = e.target.closest("button");
+
+            if (btn !== null && btn.dataset.action === "edit") {
+                $modal.querySelector("#modalCategoryLabel").textContent =
+                    "Editar Categoria";
+
+                const idCategory = btn.dataset.id;
+                const category = await getCategory(idCategory);
+
+                const $form = $modal.querySelector("#form-category");
+
+                $form.querySelector("#name").value = category.name;
+                $form.querySelector("#description").value =
+                    category.description;
+
+                $("#modalCategory").modal("show");
+            }
         });
     }
 };
@@ -29,7 +61,7 @@ const editCategory = () => {
 const initCategories = () => {
     window.addEventListener("DOMContentLoaded", () => {
         initDataTable();
-        editCategory();
+        showModalEdit();
     });
 };
 

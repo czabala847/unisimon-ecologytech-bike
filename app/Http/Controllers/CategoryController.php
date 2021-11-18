@@ -36,11 +36,18 @@ class CategoryController extends Controller
         return back()->with('status', 'Creado con éxito');
     }
 
-    public function show(Category $category)
+    public function show(int $category)
     {
-        //
-    }
+        $category = Category::findOrFail($category);
 
+        return response()->json(
+            [
+                'success' => true,
+                'data' => $category
+            ],
+            200
+        );
+    }
 
     public function edit(Category $category)
     {

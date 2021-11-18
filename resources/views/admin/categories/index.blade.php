@@ -5,7 +5,7 @@
 @section('content_header')
     <div class="d-flex my-3">
         <h1 class="d-inline">Categorias</h1>
-        <button class="btn btn-primary ml-2" data-toggle="modal" data-target="#modalNewCategory">Nueva</button>
+        <button class="btn btn-primary ml-2" data-toggle="modal" data-target="#modalCategory">Nueva</button>
     </div>
 @stop
 
@@ -55,11 +55,11 @@
                                     <td>{{ $category->description }}</td>
                                     <td>{{ $category->status }}</td>
                                     <td>
-                                        <button class="btn btn-warning">
+                                        <button data-id={{ $category->id }} data-action="edit" class="btn btn-warning">
                                             <i class="fas fa-edit"></i>
                                             <span>Editar</span>
                                         </button>
-                                        <button class="btn btn-danger">
+                                        <button data-action="delete" class="btn btn-danger">
                                             <i class="fas fa-trash-alt"></i>
                                             <span>Eliminar</span>
                                         </button>
@@ -74,18 +74,18 @@
     </section>
 
     <!-- Modal -->
-    <div class="modal fade" id="modalNewCategory" tabindex="-1" aria-labelledby="modalNewCategoryLabel"
-        aria-hidden="true">
+    <div class="modal fade" id="modalCategory" tabindex="-1" aria-labelledby="modalCategoryLabel" aria-hidden="true">
         <div class="modal-dialog modal-xl">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="modalNewCategoryLabel">Nueva Categoria</h5>
+                    <h5 class="modal-title" id="modalCategoryLabel">Nueva Categoria</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
                 <div class="modal-body">
-                    <form autocomplete="off" method="POST" action="{{ route('categories.store') }}">
+                    <form id="form-category" autocomplete="off" method="POST" action="{{ route('categories.store') }}">
+
                         <div class="form-group">
                             <label for="name">Nombre</label>
                             <input type="text" name="name" class="form-control" id="name" required>
