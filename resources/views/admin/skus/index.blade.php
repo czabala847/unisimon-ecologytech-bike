@@ -1,11 +1,11 @@
 @extends('adminlte::page')
 
-@section('title', 'Dashboard | Bicicletas')
+@section('title', 'Dashboard | Referencias')
 
 @section('content_header')
     <div class="d-flex my-3">
-        <h1 class="d-inline">Bicicletas</h1>
-        <a class="btn btn-primary ml-2" href="{{ route('bikes.create') }}">Nueva</a>
+        <h1 class="d-inline">Referencias</h1>
+        <a class="btn btn-primary ml-2" href="{{ route('skus.create') }}">Nueva</a>
     </div>
 @stop
 
@@ -50,7 +50,7 @@
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach ($bikes as $bike)
+                            @foreach ($skus as $sku)
                                 {{-- <tr>
                                     <th scope="row">{{ $category->id }}</th>
                                     <td>{{ $category->name }}</td>

@@ -16,11 +16,6 @@ class CategoryController extends Controller
         return view('admin/categories/index', compact('categories'));
     }
 
-    public function create()
-    {
-        //
-    }
-
     public function store(Request $request)
     {
 
@@ -47,11 +42,6 @@ class CategoryController extends Controller
             ],
             200
         );
-    }
-
-    public function edit(Category $category)
-    {
-        //
     }
 
 

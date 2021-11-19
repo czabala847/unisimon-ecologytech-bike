@@ -40,10 +40,9 @@
                     <table class="table" id="category_table">
                         <thead>
                             <tr>
-                                <th scope="col">#</th>
+                                <th scope="col">Id</th>
                                 <th scope="col">Nombre</th>
                                 <th scope="col">Descripción</th>
-                                <th scope="col">Estado</th>
                                 <th scope="col">Opciones</th>
                             </tr>
                         </thead>
@@ -53,7 +52,6 @@
                                     <th scope="row">{{ $category->id }}</th>
                                     <td>{{ $category->name }}</td>
                                     <td>{{ $category->description }}</td>
-                                    <td>{{ $category->status }}</td>
                                     <td>
                                         <button data-id={{ $category->id }} data-action="edit" class="btn btn-warning">
                                             <i class="fas fa-edit"></i>

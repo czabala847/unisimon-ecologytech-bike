@@ -3,28 +3,22 @@
 namespace App\Http\Controllers;
 
 use App\Sku;
+use App\Category;
 use Illuminate\Http\Request;
 
 class SkuController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+
     public function index()
     {
-        //
+        $skus = Sku::all();
+        return view('admin/skus/index', compact('skus'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function create()
     {
-        //
+        $categories = Category::all();
+        return view('admin/skus/create', compact('categories'));
     }
 
     /**

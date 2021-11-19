@@ -1,5 +1,6 @@
 import { getData } from "../../utils/FetchData";
 
+const $sectionCategories = document.querySelector(".Categories") || null;
 const $table = document.querySelector("#category_table") || null;
 const $modal = document.querySelector("#modalCategory") || null;
 const $btnModalNew = document.querySelector("#btnNewCategory") || null;
@@ -99,10 +100,12 @@ const deleteCategory = () => {
 
 const initCategories = () => {
     window.addEventListener("DOMContentLoaded", () => {
-        initDataTable();
-        showModalEdit();
-        showModalNew();
-        deleteCategory();
+        if ($sectionCategories) {
+            initDataTable();
+            showModalEdit();
+            showModalNew();
+            deleteCategory();
+        }
     });
 };
 

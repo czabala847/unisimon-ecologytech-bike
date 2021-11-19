@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Bike;
+use App\Category;
 use Illuminate\Http\Request;
 
 class BikeController extends Controller
@@ -10,17 +11,13 @@ class BikeController extends Controller
 
     public function index()
     {
-        return view('admin/bikes/index');
+        $bikes = Bike::all();
+        $categories = Category::all();
+        return view('admin/bikes/index', compact('bikes', 'categories'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function create()
     {
-        //
     }
 
     /**

@@ -21,8 +21,9 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
-Route::resource('admin/categorias', 'CategoryController')->names('categories');
+Route::resource('admin/categorias', 'CategoryController')->names('categories')->except(['create', 'edit']);
 Route::resource('admin/bicicletas', 'BikeController')->names('bikes');
+Route::resource('admin/skus', 'SkuController')->names('skus');
 
 
 // Route::get('/alquiler', '')

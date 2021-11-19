@@ -10,10 +10,15 @@ class Category extends Model
     use SoftDeletes;
 
     protected $fillable = [
-        'name', 'description', 'status'
+        'name', 'description'
     ];
 
     protected $hidden = [
         'deleted_at', 'created_at', 'updated_at',
     ];
+
+    public function bikes()
+    {
+        return $this->hasMany(Bike::class);
+    }
 }

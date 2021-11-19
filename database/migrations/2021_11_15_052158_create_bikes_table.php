@@ -15,7 +15,7 @@ class CreateBikesTable extends Migration
     {
         Schema::create('bikes', function (Blueprint $table) {
             $table->id();
-
+            $table->string('code', 20);
             $table->unsignedBigInteger('category_id');
             $table->unsignedBigInteger('sku_id');
             $table->char('status', 1);

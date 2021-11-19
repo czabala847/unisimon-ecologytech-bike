@@ -253,16 +253,23 @@ return [
             'label_color' => 'success',
         ],
         [
+            'text'        => 'Referencias',
+            'icon'        => 'fas fa-bookmark',
+            'submenu' => [
+                [
+                    'text' => 'Lista',
+                    'url'  => 'admin/skus',
+                ],
+                [
+                    'text' => 'nuevo',
+                    'url'  => 'admin/skus/create',
+                ],
+            ],
+        ],
+        [
             'text'        => 'Bicicletas',
             'url'         => 'admin/bicicletas',
             'icon'        => 'fas fa-bicycle',
-            'label_color' => 'success',
-        ],
-        [
-            'text'        => 'pages',
-            'url'         => 'admin/pages',
-            'icon'        => 'far fa-fw fa-file',
-            'label'       => 4,
             'label_color' => 'success',
         ],
         ['header' => 'account_settings'],
