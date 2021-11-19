@@ -261,7 +261,7 @@ return [
                     'url'  => 'admin/skus',
                 ],
                 [
-                    'text' => 'nuevo',
+                    'text' => 'Nuevo',
                     'url'  => 'admin/skus/create',
                 ],
             ],

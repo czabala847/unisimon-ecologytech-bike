@@ -20,6 +20,15 @@
             </div>
         @endif
 
+        @if (session('error'))
+            <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                {{ session('error') }}
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+        @endif
+
         @if ($errors->any())
             <div class="alert alert-danger alert-dismissible fade show" role="alert">
                 <ul>
@@ -35,7 +44,8 @@
 
         <div class="card">
             <div class="card-body">
-                <form autocomplete="off" method="POST" action="{{ route('skus.store') }}" id="form">
+                <form enctype="multipart/form-data" autocomplete="off" method="POST" action="{{ route('skus.store') }}"
+                    id="form">
                     <div class="form-group">
                         <label for="category">Categoria</label>
                         <select class="form-control" id="category" name="category" required>
@@ -57,9 +67,8 @@
                                         <input class="form-control mx-2" type="text" name="sku" id="sku" required />
                                     </div>
                                     <div class="form-group">
-                                        <label for="name-sku">Nombre Referencia</label>
-                                        <input class="form-control mx-2" type="text" name="name-sku" id="name-sku"
-                                            required />
+                                        <label for="name">Nombre Referencia</label>
+                                        <input class="form-control mx-2" type="text" name="name" id="name" required />
                                     </div>
                                     <div class="form-group">
                                         <label for="price">Precio</label>
@@ -72,7 +81,7 @@
                                         <header>Arrastra y suelta para cargar</header>
                                         <span>o</span>
                                         <button type="button">Busca una imagen</button>
-                                        <input type="file" name="img" hidden required>
+                                        <input type="file" name="image" class="mb-3" hidden required>
                                     </div>
                                 </div>
                             </div>
@@ -110,8 +119,6 @@
             </div>
         </div>
 
-
-
     </section>
 @stop
 
@@ -122,9 +129,6 @@
 
 @section('js')
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    <script src="{{ asset('/libs/DragDropFile/js/app.js') }}">
-        < script >
-            <
-            script src = "/js/app.js" >
-    </script>
+    <script src="{{ asset('/libs/DragDropFile/js/app.js') }}"></script>
+    <script src="/js/app.js"></script>
 @stop

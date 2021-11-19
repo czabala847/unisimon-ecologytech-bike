@@ -10,7 +10,7 @@ class Sku extends Model
     use SoftDeletes;
 
     protected $fillable = [
-        'sku', 'name', 'price', 'quantity'
+        'sku', 'name', 'price', 'quantity', 'image'
     ];
 
     protected $hidden = [

@@ -10,6 +10,7 @@
     justify-content: center;
     flex-direction: column;
 }
+
 .drag-area.active {
     border: 2px solid rgba(0, 0, 0, 0.1);
 }

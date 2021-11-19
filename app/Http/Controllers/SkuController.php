@@ -21,57 +21,63 @@ class SkuController extends Controller
         return view('admin/skus/create', compact('categories'));
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
+
     public function store(Request $request)
     {
-        //
+        $sku = Sku::firstWhere('sku', $request->sku);
+
+        if ($sku === null) {
+
+            $request->validate(
+                [
+                    'sku' => ['required', 'unique:skus'],
+                    'name' => ['required'],
+                    'price' => ['required'],
+                    'image' => ['required'],
+                ]
+            );
+
+            $sku = Sku::create(
+                [
+                    'quantity' => 0
+                ] +
+                    $request->all()
+            );
+
+            //Guardar archivos
+            if ($request->file('image')) {
+
+                $image = $request->file('image');
+                $nameImage = md5(time() . $image->getClientOriginalName());
+                $nameImage = $nameImage . "." . $image->getClientOriginalExtension();
+                $route = public_path() . '/images/upload';
+
+                $image->move($route, $nameImage);
+                $sku->image = $nameImage;
+            }
+            $sku->save();
+
+            return back()->with('status', 'Creado con éxito');
+        }
+
+        return back()->with('error', 'Ya existe el SKU');
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Sku  $sku
-     * @return \Illuminate\Http\Response
-     */
     public function show(Sku $sku)
     {
         //
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Sku  $sku
-     * @return \Illuminate\Http\Response
-     */
     public function edit(Sku $sku)
     {
         //
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Sku  $sku
-     * @return \Illuminate\Http\Response
-     */
     public function update(Request $request, Sku $sku)
     {
         //
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Sku  $sku
-     * @return \Illuminate\Http\Response
-     */
     public function destroy(Sku $sku)
     {
         //

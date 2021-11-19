@@ -21,7 +21,7 @@ class CreateSkusTable extends Migration
             $table->unsignedDouble('price');
 
             $table->unsignedSmallInteger('quantity')->nullable(true);
-            $table->string('img');
+            $table->string('image');
             $table->softDeletes();
             $table->timestamps();
         });
