@@ -35,10 +35,10 @@
 
         <div class="card">
             <div class="card-body">
-                <form autocomplete="off" method="POST" action="#" id="form">
+                <form autocomplete="off" method="POST" action="{{ route('skus.store') }}" id="form">
                     <div class="form-group">
                         <label for="category">Categoria</label>
-                        <select class="form-control" id="category" name="category" aria-disabled="true">
+                        <select class="form-control" id="category" name="category" required>
                             @foreach ($categories as $category)
                                 <option value="{{ $category->id }}">{{ $category->name }}</option>
                             @endforeach
@@ -50,19 +50,30 @@
                     <div class="card">
                         <h6 class="card-header">Referencia - SKU</h6>
                         <div class="card-body">
-                            <div class="form-group">
-                                <label for="sku">SKU</label>
-                                <input class="form-control mx-2" type="text" name="sku" id="sku" />
-                            </div>
-                            <div class="form-row">
-                                <div class="form-group col-md-6">
-                                    <label for="name-sku">Nombre SKU</label>
-                                    <input type="text" class="form-control" name="name-sku" id="name-sku" />
-
+                            <div class="row">
+                                <div class="col-12 col-md-6">
+                                    <div class="form-group">
+                                        <label for="sku">SKU</label>
+                                        <input class="form-control mx-2" type="text" name="sku" id="sku" required />
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="name-sku">Nombre Referencia</label>
+                                        <input class="form-control mx-2" type="text" name="name-sku" id="name-sku"
+                                            required />
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="price">Precio</label>
+                                        <input class="form-control mx-2" type="number" name="price" id="price" required />
+                                    </div>
                                 </div>
-                                <div class="form-group col-md-6">
-                                    <label for="price">Precio</label>
-                                    <input type="number" class="form-control" name="price" id="price">
+                                <div class="col-12 col-md-6">
+                                    <div class="drag-area">
+                                        <div class="icon"><i class="fas fa-cloud-upload-alt"></i></div>
+                                        <header>Arrastra y suelta para cargar</header>
+                                        <span>o</span>
+                                        <button type="button">Busca una imagen</button>
+                                        <input type="file" name="img" hidden required>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -73,21 +84,21 @@
                             <div class="form-row">
                                 <div class="form-group col-md-6">
                                     <label for="color">Color</label>
-                                    <input type="text" class="form-control" name="color" id="color" />
+                                    <input type="text" class="form-control" name="color" id="color" required />
                                 </div>
                                 <div class="form-group col-md-6">
                                     <label for="brake">Freno</label>
-                                    <input type="text" class="form-control" name="brake" id="brake">
+                                    <input type="text" class="form-control" name="brake" id="brake" required />
                                 </div>
                             </div>
                             <div class="form-row">
                                 <div class="form-group col-md-6">
                                     <label for="rin">Rin</label>
-                                    <input type="text" class="form-control" name="rin" id="rin" />
+                                    <input type="text" class="form-control" name="rin" id="rin" required />
                                 </div>
                                 <div class="form-group col-md-6">
                                     <label for="speed">Velocidad</label>
-                                    <input type="text" class="form-control" name="speed" id="speed">
+                                    <input type="text" class="form-control" name="speed" id="speed" required />
                                 </div>
                             </div>
                         </div>
@@ -98,14 +109,22 @@
                 </form>
             </div>
         </div>
+
+
+
     </section>
 @stop
 
 @section('css')
+    <link rel="stylesheet" href="{{ asset('/libs/DragDropFile/css/app.css') }}">
     <link rel="stylesheet" href="/css/app.css">
 @stop
 
 @section('js')
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    <script src="/js/app.js"></script>
+    <script src="{{ asset('/libs/DragDropFile/js/app.js') }}">
+        < script >
+            <
+            script src = "/js/app.js" >
+    </script>
 @stop
