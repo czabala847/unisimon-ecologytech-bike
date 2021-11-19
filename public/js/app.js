@@ -2306,23 +2306,43 @@ var showModalEdit = function showModalEdit() {
 };
 
 var deleteCategory = function deleteCategory() {
-  var $formDelete = document.querySelector("#formDelete");
+  if ($table) {
+    $table.addEventListener("click", /*#__PURE__*/function () {
+      var _ref3 = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee3(e) {
+        var btn, formParent;
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee3$(_context3) {
+          while (1) {
+            switch (_context3.prev = _context3.next) {
+              case 0:
+                btn = e.target.closest("button");
+                formParent = btn.parentElement;
 
-  if ($formDelete) {
-    $formDelete.addEventListener("submit", function (e) {
-      e.preventDefault();
-      Swal.fire({
-        title: "Seguro que quieres eliminar la categoría?",
-        showCancelButton: true,
-        confirmButtonText: "Eliminar",
-        cancelButtonText: "Cancelar"
-      }).then(function (result) {
-        /* Read more about isConfirmed, isDenied below */
-        if (result.isConfirmed) {
-          $formDelete.submit();
-        }
-      });
-    });
+                if (btn !== null && btn.dataset.action === "delete") {
+                  Swal.fire({
+                    title: "Seguro que quieres eliminar la categoría?",
+                    showCancelButton: true,
+                    confirmButtonText: "Eliminar",
+                    cancelButtonText: "Cancelar"
+                  }).then(function (result) {
+                    /* Read more about isConfirmed, isDenied below */
+                    if (result.isConfirmed) {
+                      formParent.submit();
+                    }
+                  });
+                }
+
+              case 3:
+              case "end":
+                return _context3.stop();
+            }
+          }
+        }, _callee3);
+      }));
+
+      return function (_x3) {
+        return _ref3.apply(this, arguments);
+      };
+    }());
   }
 };
 
@@ -2352,6 +2372,14 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "initSku": () => (/* binding */ initSku)
 /* harmony export */ });
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
+
+
+function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
+
+function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
+
 function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _unsupportedIterableToArray(arr) || _nonIterableSpread(); }
 
 function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
@@ -2365,7 +2393,8 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) return _arrayLikeToAr
 function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
 
 var $sectionSkus = document.querySelector(".Skus") || null;
-var $form = document.querySelector("#form");
+var $form = document.querySelector("#form") || null;
+var $table = document.querySelector("#sku_table") || null;
 
 var blockFields = function blockFields(form) {
   _toConsumableArray(form).forEach(function (item) {
@@ -2377,7 +2406,7 @@ var blockFields = function blockFields(form) {
 
 var validateCategories = function validateCategories() {
   if ($form) {
-    var $inputCategories = $form.querySelector("#category");
+    var $inputCategories = $form.querySelector("#category_id");
 
     if (_toConsumableArray($inputCategories.options).length == 0) {
       blockFields($form);
@@ -2385,10 +2414,52 @@ var validateCategories = function validateCategories() {
   }
 };
 
+var deleteSku = function deleteSku() {
+  if ($table) {
+    $table.addEventListener("click", /*#__PURE__*/function () {
+      var _ref = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee(e) {
+        var btn, formParent;
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee$(_context) {
+          while (1) {
+            switch (_context.prev = _context.next) {
+              case 0:
+                btn = e.target.closest("button");
+                formParent = btn.parentElement;
+
+                if (btn !== null && btn.dataset.action === "delete") {
+                  Swal.fire({
+                    title: "Seguro que quieres eliminar el SKU?",
+                    showCancelButton: true,
+                    confirmButtonText: "Eliminar",
+                    cancelButtonText: "Cancelar"
+                  }).then(function (result) {
+                    /* Read more about isConfirmed, isDenied below */
+                    if (result.isConfirmed) {
+                      formParent.submit();
+                    }
+                  });
+                }
+
+              case 3:
+              case "end":
+                return _context.stop();
+            }
+          }
+        }, _callee);
+      }));
+
+      return function (_x) {
+        return _ref.apply(this, arguments);
+      };
+    }());
+  }
+};
+
 var initSku = function initSku() {
   window.addEventListener("DOMContentLoaded", function () {
     if ($sectionSkus) {
       validateCategories();
+      deleteSku();
     }
   });
 };

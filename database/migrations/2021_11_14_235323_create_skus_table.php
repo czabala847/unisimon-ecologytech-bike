@@ -15,7 +15,7 @@ class CreateSkusTable extends Migration
     {
         Schema::create('skus', function (Blueprint $table) {
             $table->id();
-
+            $table->unsignedBigInteger('category_id');
             $table->string('sku', 10)->unique();
             $table->string('name', 50);
             $table->unsignedDouble('price');
@@ -24,6 +24,8 @@ class CreateSkusTable extends Migration
             $table->string('image');
             $table->softDeletes();
             $table->timestamps();
+
+            $table->foreign('category_id')->references('id')->on('categories');
         });
     }
 

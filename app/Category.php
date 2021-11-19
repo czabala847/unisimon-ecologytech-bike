@@ -17,8 +17,8 @@ class Category extends Model
         'deleted_at', 'created_at', 'updated_at',
     ];
 
-    public function bikes()
+    public function skus()
     {
-        return $this->hasMany(Bike::class);
+        return $this->hasMany(Sku::class);
     }
 }

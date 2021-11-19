@@ -10,7 +10,7 @@ class Sku extends Model
     use SoftDeletes;
 
     protected $fillable = [
-        'sku', 'name', 'price', 'quantity', 'image'
+        'category_id', 'sku', 'name', 'price', 'quantity', 'image'
     ];
 
     protected $hidden = [
@@ -20,5 +20,10 @@ class Sku extends Model
     public function attributes()
     {
         return $this->hasMany(Attribute::class);
+    }
+
+    public function category()
+    {
+        return $this->belongsTo(Category::class);
     }
 }

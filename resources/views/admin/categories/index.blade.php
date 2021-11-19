@@ -5,7 +5,7 @@
 @section('content_header')
     <div class="d-flex my-3">
         <h1 class="d-inline">Categorias</h1>
-        <button class="btn btn-primary ml-2" id="btnNewCategory">Nueva</button>
+        <button class="btn btn-primary ml-2" id="btnNewCategory"><i class="fas fa-plus-circle"></i> Nueva</button>
     </div>
 @stop
 
@@ -59,7 +59,7 @@
                                         </button>
                                         <form id="formDelete" class="d-inline-block"
                                             action="{{ route('categories.destroy', $category->id) }}" method="POST">
-                                            <button type="submit" data-action="delete" class="btn btn-danger">
+                                            <button type="button" data-action="delete" class="btn btn-danger">
                                                 <i class="fas fa-trash-alt"></i>
                                                 <span>Eliminar</span>
                                             </button>
@@ -99,7 +99,7 @@
                             <textarea name="description" name="description" class="form-control" id="description"
                                 cols="30" rows="3" aria-expanded="false" required></textarea>
                         </div>
-                        <button type="submit" class="btn btn-primary">Guardar</button>
+                        <button type="submit" class="btn btn-primary"><i class="fas fa-save"></i> Guardar</button>
                         @csrf
                         @method('POST')
                     </form>

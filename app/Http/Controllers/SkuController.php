@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Sku;
 use App\Category;
+use App\Attribute;
 use Illuminate\Http\Request;
 
 class SkuController extends Controller
@@ -30,10 +31,15 @@ class SkuController extends Controller
 
             $request->validate(
                 [
+                    'category_id' => ['required'],
                     'sku' => ['required', 'unique:skus'],
                     'name' => ['required'],
                     'price' => ['required'],
                     'image' => ['required'],
+                    'color' => ['required'],
+                    'brake' => ['required'],
+                    'rin' => ['required'],
+                    'speed' => ['required']
                 ]
             );
 
@@ -55,6 +61,21 @@ class SkuController extends Controller
                 $image->move($route, $nameImage);
                 $sku->image = $nameImage;
             }
+
+            if ($sku->id) {
+
+                $arrAttr = ['color', 'brake', 'rin', 'speed'];
+
+                foreach ($arrAttr as $attr) {
+                    //Insertar en BD los atributos
+                    Attribute::create([
+                        'sku_id' => $sku->id,
+                        'attribute' => $attr,
+                        'value' => $request->$attr
+                    ]);
+                }
+            }
+
             $sku->save();
 
             return back()->with('status', 'Creado con éxito');
@@ -78,8 +99,14 @@ class SkuController extends Controller
         //
     }
 
-    public function destroy(Sku $sku)
+    public function destroy(int $sku)
     {
-        //
+        $skuDelete = Sku::find($sku);
+        $skuDelete->delete();
+
+        Attribute::where('sku_id', $sku)->delete();
+
+        // dd($categoryDelete);
+        return back()->with('status', 'SKU eliminado con éxito');
     }
 }

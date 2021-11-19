@@ -5,12 +5,12 @@
 @section('content_header')
     <div class="d-flex my-3">
         <h1 class="d-inline">Referencias</h1>
-        <a class="btn btn-primary ml-2" href="{{ route('skus.create') }}">Nueva</a>
+        <a class="btn btn-primary ml-2" href="{{ route('skus.create') }}"><i class="fas fa-plus-circle"></i> Nueva</a>
     </div>
 @stop
 
 @section('content')
-    <section class="Bikes">
+    <section class="Skus">
 
         @if (session('status'))
             <div class="alert alert-success alert-dismissible fade show" role="alert">
@@ -37,32 +37,33 @@
         <div class="card">
             <div class="card-body">
                 <div class="table-responsive">
-                    <table class="table" id="bike_table">
+                    <table class="table" id="sku_table">
                         <thead>
                             <tr>
-                                <th scope="col">#</th>
                                 <th scope="col">Id</th>
                                 <th scope="col">Categoría</th>
-                                <th scope="col">Sku</th>
-                                <th scope="col">Nombre</th>
+                                <th scope="col">SKU</th>
+                                <th scope="col">Referencia</th>
                                 <th scope="col">Precio</th>
                                 <th scope="col">Opciones</th>
                             </tr>
                         </thead>
                         <tbody>
                             @foreach ($skus as $sku)
-                                {{-- <tr>
-                                    <th scope="row">{{ $category->id }}</th>
-                                    <td>{{ $category->name }}</td>
-                                    <td>{{ $category->description }}</td>
+                                <tr>
+                                    <th scope="row">{{ $sku->id }}</th>
+                                    <td>{{ $sku->category_id }}</td>
+                                    <td>{{ $sku->sku }}</td>
+                                    <td>{{ $sku->name }}</td>
+                                    <td>$ {{ number_format($sku->price) }}</td>
                                     <td>
-                                        <button data-id={{ $category->id }} data-action="edit" class="btn btn-warning">
+                                        <button data-id={{ $sku->id }} data-action="edit" class="btn btn-warning">
                                             <i class="fas fa-edit"></i>
                                             <span>Editar</span>
                                         </button>
-                                        <form id="formDelete" class="d-inline-block"
-                                            action="{{ route('categories.destroy', $category->id) }}" method="POST">
-                                            <button type="submit" data-action="delete" class="btn btn-danger">
+                                        <form class="d-inline-block" action="{{ route('skus.destroy', $sku->id) }}"
+                                            method="POST">
+                                            <button type="button" data-action="delete" class="btn btn-danger">
                                                 <i class="fas fa-trash-alt"></i>
                                                 <span>Eliminar</span>
                                             </button>
@@ -70,7 +71,7 @@
                                             @method('DELETE')
                                         </form>
                                     </td>
-                                </tr> --}}
+                                </tr>
                             @endforeach
                         </tbody>
                     </table>

@@ -77,23 +77,23 @@ const showModalEdit = () => {
 };
 
 const deleteCategory = () => {
-    const $formDelete = document.querySelector("#formDelete");
-
-    if ($formDelete) {
-        $formDelete.addEventListener("submit", (e) => {
-            e.preventDefault();
-
-            Swal.fire({
-                title: "Seguro que quieres eliminar la categoría?",
-                showCancelButton: true,
-                confirmButtonText: "Eliminar",
-                cancelButtonText: "Cancelar",
-            }).then((result) => {
-                /* Read more about isConfirmed, isDenied below */
-                if (result.isConfirmed) {
-                    $formDelete.submit();
-                }
-            });
+    if ($table) {
+        $table.addEventListener("click", async (e) => {
+            const btn = e.target.closest("button");
+            const formParent = btn.parentElement;
+            if (btn !== null && btn.dataset.action === "delete") {
+                Swal.fire({
+                    title: "Seguro que quieres eliminar la categoría?",
+                    showCancelButton: true,
+                    confirmButtonText: "Eliminar",
+                    cancelButtonText: "Cancelar",
+                }).then((result) => {
+                    /* Read more about isConfirmed, isDenied below */
+                    if (result.isConfirmed) {
+                        formParent.submit();
+                    }
+                });
+            }
         });
     }
 };

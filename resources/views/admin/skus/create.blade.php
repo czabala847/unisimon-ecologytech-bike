@@ -47,8 +47,8 @@
                 <form enctype="multipart/form-data" autocomplete="off" method="POST" action="{{ route('skus.store') }}"
                     id="form">
                     <div class="form-group">
-                        <label for="category">Categoria</label>
-                        <select class="form-control" id="category" name="category" required>
+                        <label for="category_id">Categoria</label>
+                        <select class="form-control" id="category_id" name="category_id" required>
                             @foreach ($categories as $category)
                                 <option value="{{ $category->id }}">{{ $category->name }}</option>
                             @endforeach
@@ -112,7 +112,7 @@
                             </div>
                         </div>
                     </div>
-                    <button type="submit" class="btn btn-primary">Guardar</button>
+                    <button type="submit" class="btn btn-primary"><i class="fas fa-save"></i> Guardar</button>
                     @csrf
                     @method('POST')
                 </form>
