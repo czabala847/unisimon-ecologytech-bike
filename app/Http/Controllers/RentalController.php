@@ -2,15 +2,14 @@
 
 namespace App\Http\Controllers;
 
-use App\RentalPricing;
+use App\Rental;
 use Illuminate\Http\Request;
 
-class RentalPricingController extends Controller
+class RentalController extends Controller
 {
 
     public function index()
     {
-        //
     }
 
 
@@ -26,25 +25,25 @@ class RentalPricingController extends Controller
     }
 
 
-    public function show(RentalPricing $rentalPricing)
+    public function show(Rental $rental)
     {
         //
     }
 
 
-    public function edit(RentalPricing $rentalPricing)
+    public function edit(Rental $rental)
     {
         //
     }
 
 
-    public function update(Request $request, RentalPricing $rentalPricing)
+    public function update(Request $request, Rental $rental)
     {
         //
     }
 
 
-    public function destroy(RentalPricing $rentalPricing)
+    public function destroy(Rental $rental)
     {
         //
     }

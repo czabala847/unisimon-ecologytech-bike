@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateRentalPricingsTable extends Migration
+class CreateRentalsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,8 @@ class CreateRentalPricingsTable extends Migration
      */
     public function up()
     {
-        Schema::create('rental_pricings', function (Blueprint $table) {
+        Schema::create('rentals', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('sku_id');
-            $table->double('price');
-            $table->string('price');
             $table->timestamps();
         });
     }
@@ -29,6 +26,6 @@ class CreateRentalPricingsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('rental_pricings');
+        Schema::dropIfExists('rentals');
     }
 }

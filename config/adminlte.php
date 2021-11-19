@@ -272,6 +272,16 @@ return [
             'icon'        => 'fas fa-bicycle',
             'label_color' => 'success',
         ],
+        [
+            'text'        => 'Prestamos',
+            'icon'        => 'fas fa-bookmark',
+            'submenu' => [
+                [
+                    'text' => 'Precios',
+                    'url'  => 'admin/precios',
+                ],
+            ],
+        ],
         ['header' => 'account_settings'],
         [
             'text' => 'profile',
