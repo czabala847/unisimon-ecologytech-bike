@@ -5,7 +5,7 @@
 @section('content_header')
     <div class="d-flex my-3">
         <h1 class="d-inline">Categorias</h1>
-        <button class="btn btn-primary ml-2" data-toggle="modal" data-target="#modalCategory">Nueva</button>
+        <button class="btn btn-primary ml-2" id="btnNewCategory">Nueva</button>
     </div>
 @stop
 
@@ -59,10 +59,15 @@
                                             <i class="fas fa-edit"></i>
                                             <span>Editar</span>
                                         </button>
-                                        <button data-action="delete" class="btn btn-danger">
-                                            <i class="fas fa-trash-alt"></i>
-                                            <span>Eliminar</span>
-                                        </button>
+                                        <form id="formDelete" class="d-inline-block"
+                                            action="{{ route('categories.destroy', $category->id) }}" method="POST">
+                                            <button type="submit" data-action="delete" class="btn btn-danger">
+                                                <i class="fas fa-trash-alt"></i>
+                                                <span>Eliminar</span>
+                                            </button>
+                                            @csrf
+                                            @method('DELETE')
+                                        </form>
                                     </td>
                                 </tr>
                             @endforeach
@@ -84,7 +89,8 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                    <form id="form-category" autocomplete="off" method="POST" action="{{ route('categories.store') }}">
+                    <form id="form-category" autocomplete="off" method="POST" data-url="{{ route('categories.store') }}"
+                        action="{{ route('categories.store') }}">
 
                         <div class="form-group">
                             <label for="name">Nombre</label>
@@ -114,5 +120,6 @@
 @stop
 
 @section('js')
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="/js/app.js"></script>
 @stop

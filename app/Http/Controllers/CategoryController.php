@@ -55,14 +55,19 @@ class CategoryController extends Controller
     }
 
 
-    public function update(Request $request, Category $category)
+    public function update(Request $request, int $category)
     {
-        //
+        $categoryUpdate = Category::find($category);
+        $categoryUpdate->update($request->all());
+        return back()->with('status', 'Categoría editada con éxito');
     }
 
 
-    public function destroy(Category $category)
+    public function destroy(int $category)
     {
-        //
+        $categoryDelete = Category::find($category);
+        $categoryDelete->delete();
+        // dd($categoryDelete);
+        return back()->with('status', 'Categoría eliminada con éxito');
     }
 }

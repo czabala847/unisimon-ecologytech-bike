@@ -2181,6 +2181,9 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
 var $table = document.querySelector("#category_table") || null;
 var $modal = document.querySelector("#modalCategory") || null;
+var $btnModalNew = document.querySelector("#btnNewCategory") || null;
+var $modalLabel = $modal ? $modal.querySelector("#modalCategoryLabel") : null;
+var $form = $modal ? $modal.querySelector("#form-category") : null;
 
 var initDataTable = function initDataTable() {
   if ($table) {
@@ -2244,11 +2247,24 @@ var getCategory = /*#__PURE__*/function () {
   };
 }();
 
+var showModalNew = function showModalNew() {
+  if ($btnModalNew) {
+    $btnModalNew.addEventListener("click", function (e) {
+      $modalLabel.textContent = "Nueva Categoría";
+      $form.querySelector("#name").value = "";
+      $form.querySelector("#description").value = "";
+      $form.action = $form.dataset.url;
+      $form.querySelector("input[name='_method']").value = "POST";
+      $("#modalCategory").modal("show");
+    });
+  }
+};
+
 var showModalEdit = function showModalEdit() {
   if ($table) {
     $table.addEventListener("click", /*#__PURE__*/function () {
       var _ref2 = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee2(e) {
-        var btn, idCategory, category, $form;
+        var btn, idCategory, category;
         return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee2$(_context2) {
           while (1) {
             switch (_context2.prev = _context2.next) {
@@ -2256,23 +2272,24 @@ var showModalEdit = function showModalEdit() {
                 btn = e.target.closest("button");
 
                 if (!(btn !== null && btn.dataset.action === "edit")) {
-                  _context2.next = 11;
+                  _context2.next = 12;
                   break;
                 }
 
-                $modal.querySelector("#modalCategoryLabel").textContent = "Editar Categoria";
+                $modalLabel.textContent = "Editar Categoría";
                 idCategory = btn.dataset.id;
                 _context2.next = 6;
                 return getCategory(idCategory);
 
               case 6:
                 category = _context2.sent;
-                $form = $modal.querySelector("#form-category");
                 $form.querySelector("#name").value = category.name;
                 $form.querySelector("#description").value = category.description;
+                $form.action = $form.dataset.url + "/" + idCategory;
+                $form.querySelector("input[name='_method']").value = "PUT";
                 $("#modalCategory").modal("show");
 
-              case 11:
+              case 12:
               case "end":
                 return _context2.stop();
             }
@@ -2287,10 +2304,33 @@ var showModalEdit = function showModalEdit() {
   }
 };
 
+var deleteCategory = function deleteCategory() {
+  var $formDelete = document.querySelector("#formDelete");
+
+  if ($formDelete) {
+    $formDelete.addEventListener("submit", function (e) {
+      e.preventDefault();
+      Swal.fire({
+        title: "Seguro que quieres eliminar la categoría?",
+        showCancelButton: true,
+        confirmButtonText: "Eliminar",
+        cancelButtonText: "Cancelar"
+      }).then(function (result) {
+        /* Read more about isConfirmed, isDenied below */
+        if (result.isConfirmed) {
+          $formDelete.submit();
+        }
+      });
+    });
+  }
+};
+
 var initCategories = function initCategories() {
   window.addEventListener("DOMContentLoaded", function () {
     initDataTable();
     showModalEdit();
+    showModalNew();
+    deleteCategory();
   });
 };
 
