@@ -20,6 +20,7 @@
 @import "./layout/Hero";
 @import "./layout/Header";
 @import "./layout/Services";
+@import "./layout/pricesList";
 
 body {
     background-color: $color-white;
@@ -30,4 +31,8 @@ h2 {
     font-family: "Abril Fatface", cursive;
     text-transform: uppercase;
     letter-spacing: 3px;
+}
+
+#App {
+    overflow: hidden;
 }

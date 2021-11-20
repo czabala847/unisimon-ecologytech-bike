@@ -1,5 +1,5 @@
 const changeColorHeader = () => {
-    const $home = document.querySelector("#Home") || null;
+    const $home = document.querySelector("#App") || null;
 
     if ($home) {
         const $header = $home.querySelector("#Header") || null;

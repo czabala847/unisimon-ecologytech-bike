@@ -21,11 +21,11 @@
 
         <div class="App" id="App">
 
-            @include('header')
+            @include('layouts.header')
 
             @yield('content')
 
-            @include('footer')
+            @include('layouts.footer')
 
         </div>
 

@@ -2735,7 +2735,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "initHome": () => (/* binding */ initHome)
 /* harmony export */ });
 var changeColorHeader = function changeColorHeader() {
-  var $home = document.querySelector("#Home") || null;
+  var $home = document.querySelector("#App") || null;
 
   if ($home) {
     var $header = $home.querySelector("#Header") || null;

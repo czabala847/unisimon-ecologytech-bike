@@ -10423,6 +10423,14 @@ textarea {
   transform: scale(1.05);
 }
 
+/****************************************\
+|             PRICES LIST                |
+\****************************************/
+#ViewPrices {
+  background-image: url(/images/pexels-pixabay-210117.jpg?470ddb81ded9cacb90b35e80c9334261);
+  background-size: cover;
+}
+
 body {
   background-color: #fff;
 }
@@ -10432,4 +10440,8 @@ h2 {
   font-family: "Abril Fatface", cursive;
   text-transform: uppercase;
   letter-spacing: 3px;
+}
+
+#App {
+  overflow: hidden;
 }

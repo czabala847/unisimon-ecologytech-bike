@@ -9,6 +9,11 @@ use Illuminate\Http\Request;
 class RentalPricingController extends Controller
 {
 
+    public function pricesView()
+    {
+        return view("prices");
+    }
+
     public function index()
     {
         $prices = RentalPricing::all();
