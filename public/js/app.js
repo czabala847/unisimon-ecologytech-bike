@@ -2361,6 +2361,242 @@ var initCategories = function initCategories() {
 
 /***/ }),
 
+/***/ "./resources/js/Admin/Rentals/prices.js":
+/*!**********************************************!*\
+  !*** ./resources/js/Admin/Rentals/prices.js ***!
+  \**********************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "initPrices": () => (/* binding */ initPrices)
+/* harmony export */ });
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _utils_FetchData__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../utils/FetchData */ "./resources/js/utils/FetchData.js");
+
+
+function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
+
+function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
+
+function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _unsupportedIterableToArray(arr) || _nonIterableSpread(); }
+
+function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+
+function _iterableToArray(iter) { if (typeof Symbol !== "undefined" && iter[Symbol.iterator] != null || iter["@@iterator"] != null) return Array.from(iter); }
+
+function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) return _arrayLikeToArray(arr); }
+
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
+
+
+var $table = document.querySelector("#prices_table") || null;
+var $sectionPrices = document.querySelector(".Prices") || null;
+var $modal = document.querySelector("#modalPrices") || null;
+var $btnModalNew = document.querySelector("#btnNewPrice") || null;
+var $modalLabel = $modal ? $modal.querySelector("#modalPricesLabel") : null;
+var $form = $modal ? $modal.querySelector("#form-prices") : null;
+
+var initDataTable = function initDataTable() {
+  if ($table) {
+    $("#prices_table").DataTable({
+      // dom: "Bfrtip",
+      // buttons: ["copy", "csv", "excel", "pdf", "print"],
+      aProcessing: true,
+      aServerSide: true,
+      language: {
+        url: "//cdn.datatables.net/plug-ins/1.10.20/i18n/Spanish.json"
+      },
+      pageLength: 25,
+      responsive: "true",
+      bDestroy: true,
+      order: [[0, "asc"]]
+    });
+  }
+};
+
+var blockFields = function blockFields(form) {
+  _toConsumableArray(form).forEach(function (item) {
+    if (item.type !== "hidden") {
+      item.disabled = true;
+    }
+  });
+};
+
+var validateCategories = function validateCategories() {
+  if ($form) {
+    var $inputCategories = $form.querySelector("#category_id");
+
+    if (_toConsumableArray($inputCategories.options).length == 0) {
+      blockFields($form);
+    }
+  }
+};
+
+var deletePrice = function deletePrice() {
+  if ($table) {
+    $table.addEventListener("click", /*#__PURE__*/function () {
+      var _ref = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee(e) {
+        var btn, formParent;
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee$(_context) {
+          while (1) {
+            switch (_context.prev = _context.next) {
+              case 0:
+                btn = e.target.closest("button");
+                formParent = btn.parentElement;
+
+                if (btn !== null && btn.dataset.action === "delete") {
+                  Swal.fire({
+                    title: "Seguro que quieres eliminar la categoría?",
+                    showCancelButton: true,
+                    confirmButtonText: "Eliminar",
+                    cancelButtonText: "Cancelar"
+                  }).then(function (result) {
+                    /* Read more about isConfirmed, isDenied below */
+                    if (result.isConfirmed) {
+                      formParent.submit();
+                    }
+                  });
+                }
+
+              case 3:
+              case "end":
+                return _context.stop();
+            }
+          }
+        }, _callee);
+      }));
+
+      return function (_x) {
+        return _ref.apply(this, arguments);
+      };
+    }());
+  }
+};
+
+var showModalNew = function showModalNew() {
+  if ($btnModalNew) {
+    $btnModalNew.addEventListener("click", function (e) {
+      $modalLabel.textContent = "Nuevo Tarifa";
+      $form.querySelector("#price").value = "";
+      $form.querySelector("#description").value = "";
+      $form.action = $form.dataset.url;
+      $form.querySelector("input[name='_method']").value = "POST";
+      $("#modalPrices").modal("show");
+    });
+  }
+};
+
+var getPrice = /*#__PURE__*/function () {
+  var _ref2 = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee2(idPrice) {
+    var url, response;
+    return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee2$(_context2) {
+      while (1) {
+        switch (_context2.prev = _context2.next) {
+          case 0:
+            url = "admin/precios/".concat(idPrice);
+            _context2.prev = 1;
+            _context2.next = 4;
+            return (0,_utils_FetchData__WEBPACK_IMPORTED_MODULE_1__.getData)(url);
+
+          case 4:
+            response = _context2.sent;
+
+            if (!(response.ok === true && response.status === 200)) {
+              _context2.next = 7;
+              break;
+            }
+
+            return _context2.abrupt("return", response.data.data);
+
+          case 7:
+            _context2.next = 12;
+            break;
+
+          case 9:
+            _context2.prev = 9;
+            _context2.t0 = _context2["catch"](1);
+            console.log(_context2.t0);
+
+          case 12:
+          case "end":
+            return _context2.stop();
+        }
+      }
+    }, _callee2, null, [[1, 9]]);
+  }));
+
+  return function getPrice(_x2) {
+    return _ref2.apply(this, arguments);
+  };
+}();
+
+var showModalEdit = function showModalEdit() {
+  if ($table) {
+    $table.addEventListener("click", /*#__PURE__*/function () {
+      var _ref3 = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee3(e) {
+        var btn, idTarifa, price;
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee3$(_context3) {
+          while (1) {
+            switch (_context3.prev = _context3.next) {
+              case 0:
+                btn = e.target.closest("button");
+
+                if (!(btn !== null && btn.dataset.action === "edit")) {
+                  _context3.next = 13;
+                  break;
+                }
+
+                $modalLabel.textContent = "Editar Tarifa";
+                idTarifa = btn.dataset.id;
+                _context3.next = 6;
+                return getPrice(idTarifa);
+
+              case 6:
+                price = _context3.sent;
+                // debugger;
+                $form.querySelector("#category_id").value = price.category_id;
+                $form.querySelector("#price").value = price.price;
+                $form.querySelector("#description").value = price.description;
+                $form.action = $form.dataset.url + "/" + idTarifa;
+                $form.querySelector("input[name='_method']").value = "PUT";
+                $("#modalPrices").modal("show");
+
+              case 13:
+              case "end":
+                return _context3.stop();
+            }
+          }
+        }, _callee3);
+      }));
+
+      return function (_x3) {
+        return _ref3.apply(this, arguments);
+      };
+    }());
+  }
+};
+
+var initPrices = function initPrices() {
+  window.addEventListener("DOMContentLoaded", function () {
+    if ($sectionPrices) {
+      initDataTable();
+      showModalNew();
+      validateCategories();
+      deletePrice();
+      showModalEdit();
+    }
+  });
+};
+
+
+
+/***/ }),
+
 /***/ "./resources/js/Admin/Skus/index.js":
 /*!******************************************!*\
   !*** ./resources/js/Admin/Skus/index.js ***!
@@ -2395,6 +2631,24 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
 var $sectionSkus = document.querySelector(".Skus") || null;
 var $form = document.querySelector("#form") || null;
 var $table = document.querySelector("#sku_table") || null;
+
+var initDataTable = function initDataTable() {
+  if ($table) {
+    $("#sku_table").DataTable({
+      // dom: "Bfrtip",
+      // buttons: ["copy", "csv", "excel", "pdf", "print"],
+      aProcessing: true,
+      aServerSide: true,
+      language: {
+        url: "//cdn.datatables.net/plug-ins/1.10.20/i18n/Spanish.json"
+      },
+      pageLength: 25,
+      responsive: "true",
+      bDestroy: true,
+      order: [[0, "asc"]]
+    });
+  }
+};
 
 var blockFields = function blockFields(form) {
   _toConsumableArray(form).forEach(function (item) {
@@ -2460,6 +2714,7 @@ var initSku = function initSku() {
     if ($sectionSkus) {
       validateCategories();
       deleteSku();
+      initDataTable();
     }
   });
 };
@@ -2518,7 +2773,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _Home_index_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./Home/index.js */ "./resources/js/Home/index.js");
 /* harmony import */ var _Admin_Categories_index_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Admin/Categories/index.js */ "./resources/js/Admin/Categories/index.js");
 /* harmony import */ var _Admin_Skus_index_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./Admin/Skus/index.js */ "./resources/js/Admin/Skus/index.js");
+/* harmony import */ var _Admin_Rentals_prices_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./Admin/Rentals/prices.js */ "./resources/js/Admin/Rentals/prices.js");
 __webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js");
+
 
 
 
@@ -2526,6 +2783,7 @@ __webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js");
 (0,_Home_index_js__WEBPACK_IMPORTED_MODULE_0__.initHome)();
 (0,_Admin_Categories_index_js__WEBPACK_IMPORTED_MODULE_1__.initCategories)();
 (0,_Admin_Skus_index_js__WEBPACK_IMPORTED_MODULE_2__.initSku)();
+(0,_Admin_Rentals_prices_js__WEBPACK_IMPORTED_MODULE_3__.initPrices)();
 
 /***/ }),
 

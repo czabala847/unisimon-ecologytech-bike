@@ -26,7 +26,7 @@ class CategoryController extends Controller
             ]
         );
 
-        Category::create(['status' => 'A'] + $request->all());
+        Category::create($request->all());
 
         return back()->with('status', 'Creado con éxito');
     }

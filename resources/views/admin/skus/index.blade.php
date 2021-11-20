@@ -45,6 +45,7 @@
                                 <th scope="col">SKU</th>
                                 <th scope="col">Referencia</th>
                                 <th scope="col">Precio</th>
+                                <th scope="col">Cantidad</th>
                                 <th scope="col">Opciones</th>
                             </tr>
                         </thead>
@@ -52,10 +53,11 @@
                             @foreach ($skus as $sku)
                                 <tr>
                                     <th scope="row">{{ $sku->id }}</th>
-                                    <td>{{ $sku->category_id }}</td>
+                                    <td>{{ $sku->category->name }}</td>
                                     <td>{{ $sku->sku }}</td>
                                     <td>{{ $sku->name }}</td>
                                     <td>$ {{ number_format($sku->price) }}</td>
+                                    <td>{{ number_format($sku->quantity) }}</td>
                                     <td>
                                         <button data-id={{ $sku->id }} data-action="edit" class="btn btn-warning">
                                             <i class="fas fa-edit"></i>

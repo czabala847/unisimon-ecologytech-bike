@@ -24,7 +24,7 @@ Route::get('/home', 'HomeController@index')->name('home');
 Route::resource('admin/categorias', 'CategoryController')->names('categories')->except(['create', 'edit']);
 Route::resource('admin/bicicletas', 'BikeController')->names('bikes');
 Route::resource('admin/skus', 'SkuController')->names('skus');
-Route::resource('admin/precios', 'RentalPricing')->names('prices');
+Route::resource('admin/precios', 'RentalPricingController')->names('prices');
 
 
 // Route::get('/alquiler', '')

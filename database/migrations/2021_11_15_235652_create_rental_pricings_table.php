@@ -15,10 +15,14 @@ class CreateRentalPricingsTable extends Migration
     {
         Schema::create('rental_pricings', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('sku_id');
+            $table->unsignedBigInteger('category_id');
             $table->double('price');
-            $table->string('price');
+            $table->string('description');
+
+            $table->softDeletes();
             $table->timestamps();
+
+            $table->foreign('category_id')->references('id')->on('categories');
         });
     }
 

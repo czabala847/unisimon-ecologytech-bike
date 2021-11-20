@@ -21,4 +21,9 @@ class Category extends Model
     {
         return $this->hasMany(Sku::class);
     }
+
+    public function rentalPricings()
+    {
+        return $this->hasMany(RentalPricing::class);
+    }
 }

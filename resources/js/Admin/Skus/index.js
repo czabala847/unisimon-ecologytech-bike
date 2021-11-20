@@ -2,6 +2,24 @@ const $sectionSkus = document.querySelector(".Skus") || null;
 const $form = document.querySelector("#form") || null;
 const $table = document.querySelector("#sku_table") || null;
 
+const initDataTable = () => {
+    if ($table) {
+        $("#sku_table").DataTable({
+            // dom: "Bfrtip",
+            // buttons: ["copy", "csv", "excel", "pdf", "print"],
+            aProcessing: true,
+            aServerSide: true,
+            language: {
+                url: "//cdn.datatables.net/plug-ins/1.10.20/i18n/Spanish.json",
+            },
+            pageLength: 25,
+            responsive: "true",
+            bDestroy: true,
+            order: [[0, "asc"]],
+        });
+    }
+};
+
 const blockFields = (form) => {
     [...form].forEach((item) => {
         if (item.type !== "hidden") {
@@ -47,6 +65,7 @@ const initSku = () => {
         if ($sectionSkus) {
             validateCategories();
             deleteSku();
+            initDataTable();
         }
     });
 };

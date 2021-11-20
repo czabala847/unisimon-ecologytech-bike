@@ -81,7 +81,7 @@
                                         <header>Arrastra y suelta para cargar</header>
                                         <span>o</span>
                                         <button type="button">Busca una imagen</button>
-                                        <input type="file" name="image" class="mb-3" hidden required>
+                                        <input type="file" name="image" class="mb-3 d-none" required />
                                     </div>
                                 </div>
                             </div>
@@ -106,7 +106,7 @@
                                     <input type="text" class="form-control" name="rin" id="rin" required />
                                 </div>
                                 <div class="form-group col-md-6">
-                                    <label for="speed">Velocidad</label>
+                                    <label for="speed">Velocidad KM/H</label>
                                     <input type="text" class="form-control" name="speed" id="speed" required />
                                 </div>
                             </div>
