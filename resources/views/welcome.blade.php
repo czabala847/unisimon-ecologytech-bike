@@ -56,9 +56,9 @@
                                         assumenda? Maxime ex eaque dignissimos quas, ipsam aut ut quaerat.
 
                                     </p>
-                                    <button class="btn btn-secondary">
+                                    <a href="{{ url('prestamos/precios') }}" class="btn btn-secondary">
                                         Conoce más
-                                    </button>
+                                    </a>
 
                                     <i class="fas fa-calendar-alt Services__icon"></i>
                                 </div>

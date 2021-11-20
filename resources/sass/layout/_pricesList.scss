@@ -2,7 +2,11 @@
 |             PRICES LIST                |
 \****************************************/
 
-#ViewPrices {
+.ViewPrices {
     background-image: url("../../images/pexels-pixabay-210117.jpg");
     background-size: cover;
+
+    &__form {
+        background-color: rgba(0, 0, 0, 0.9);
+    }
 }

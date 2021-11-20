@@ -10426,9 +10426,12 @@ textarea {
 /****************************************\
 |             PRICES LIST                |
 \****************************************/
-#ViewPrices {
+.ViewPrices {
   background-image: url(/images/pexels-pixabay-210117.jpg?470ddb81ded9cacb90b35e80c9334261);
   background-size: cover;
+}
+.ViewPrices__form {
+  background-color: rgba(0, 0, 0, 0.9);
 }
 
 body {
