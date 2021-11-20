@@ -45,7 +45,7 @@
                                 <th scope="col">SKU</th>
                                 <th scope="col">Referencia</th>
                                 <th scope="col">Precio</th>
-                                <th scope="col">Cantidad</th>
+                                <th scope="col">Stock</th>
                                 <th scope="col">Opciones</th>
                             </tr>
                         </thead>
