@@ -4,15 +4,31 @@ const $sectionPrices = document.querySelector("#ViewPrices") || null;
 const $selectPrices = document.querySelector("#category_id") || null;
 const $card = document.querySelector("#card-info") || null;
 const $spanPrince = document.querySelector("#spanPrince") || null;
+const $spanAvailable = document.querySelector("#spanAvailable") || null;
 const $selectSku = document.querySelector("#sku_id") || null;
 const $tdColor = document.querySelector("#tdColor") || null;
 const $tdFreno = document.querySelector("#tdFreno") || null;
 const $tdRin = document.querySelector("#tdRin") || null;
 const $tdVelocidad = document.querySelector("#tdVelocidad") || null;
 const $containerImage = document.querySelector("#containerImage") || null;
+const $noteAvailable = document.querySelector("#noteAvailable") || null;
+const $btnRental = document.querySelector("#btnRental") || null;
 
 const getPrice = async (idPrice) => {
     const url = `admin/precios/${idPrice}`;
+
+    try {
+        const response = await getData(url);
+        if (response.ok === true && response.status === 200) {
+            return response.data.data;
+        }
+    } catch (error) {
+        console.log(error);
+    }
+};
+
+const availableBikes = async (id) => {
+    const url = `admin/skusAvailable/${id}`;
 
     try {
         const response = await getData(url);
@@ -91,6 +107,16 @@ const handleChangeReference = async (idReference) => {
 
         $containerImage.append(img);
     }
+
+    const available = await availableBikes(idReference);
+    $spanAvailable.textContent = available;
+    $noteAvailable.textContent = "";
+    $btnRental.disabled = false;
+    if (available <= 0) {
+        $noteAvailable.textContent =
+            "No puedes alquilar porque no hay stock de está referencia.";
+        $btnRental.disabled = true;
+    }
 };
 
 const handleChange = async (idPrice) => {
@@ -108,7 +134,7 @@ const handleChange = async (idPrice) => {
     references.map((reference) => {
         const option = document.createElement("option");
         option.value = reference.id;
-        option.textContent = reference = `${reference.id} - ${reference.name}`;
+        option.textContent = `${reference.id} - ${reference.name}`;
         arrayOption.push(option);
     });
 

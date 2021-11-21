@@ -2990,12 +2990,15 @@ var $sectionPrices = document.querySelector("#ViewPrices") || null;
 var $selectPrices = document.querySelector("#category_id") || null;
 var $card = document.querySelector("#card-info") || null;
 var $spanPrince = document.querySelector("#spanPrince") || null;
+var $spanAvailable = document.querySelector("#spanAvailable") || null;
 var $selectSku = document.querySelector("#sku_id") || null;
 var $tdColor = document.querySelector("#tdColor") || null;
 var $tdFreno = document.querySelector("#tdFreno") || null;
 var $tdRin = document.querySelector("#tdRin") || null;
 var $tdVelocidad = document.querySelector("#tdVelocidad") || null;
 var $containerImage = document.querySelector("#containerImage") || null;
+var $noteAvailable = document.querySelector("#noteAvailable") || null;
+var $btnRental = document.querySelector("#btnRental") || null;
 
 var getPrice = /*#__PURE__*/function () {
   var _ref = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee(idPrice) {
@@ -3041,14 +3044,14 @@ var getPrice = /*#__PURE__*/function () {
   };
 }();
 
-var getSkus = /*#__PURE__*/function () {
-  var _ref2 = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee2(idCategory) {
+var availableBikes = /*#__PURE__*/function () {
+  var _ref2 = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee2(id) {
     var url, response;
     return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee2$(_context2) {
       while (1) {
         switch (_context2.prev = _context2.next) {
           case 0:
-            url = "admin/skusCategory/".concat(idCategory);
+            url = "admin/skusAvailable/".concat(id);
             _context2.prev = 1;
             _context2.next = 4;
             return (0,_utils_FetchData__WEBPACK_IMPORTED_MODULE_1__.getData)(url);
@@ -3080,19 +3083,19 @@ var getSkus = /*#__PURE__*/function () {
     }, _callee2, null, [[1, 9]]);
   }));
 
-  return function getSkus(_x2) {
+  return function availableBikes(_x2) {
     return _ref2.apply(this, arguments);
   };
 }();
 
-var getAttributes = /*#__PURE__*/function () {
-  var _ref3 = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee3(idSku) {
+var getSkus = /*#__PURE__*/function () {
+  var _ref3 = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee3(idCategory) {
     var url, response;
     return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee3$(_context3) {
       while (1) {
         switch (_context3.prev = _context3.next) {
           case 0:
-            url = "admin/attributes/".concat(idSku);
+            url = "admin/skusCategory/".concat(idCategory);
             _context3.prev = 1;
             _context3.next = 4;
             return (0,_utils_FetchData__WEBPACK_IMPORTED_MODULE_1__.getData)(url);
@@ -3124,23 +3127,67 @@ var getAttributes = /*#__PURE__*/function () {
     }, _callee3, null, [[1, 9]]);
   }));
 
-  return function getAttributes(_x3) {
+  return function getSkus(_x3) {
     return _ref3.apply(this, arguments);
   };
 }();
 
-var handleChangeReference = /*#__PURE__*/function () {
-  var _ref4 = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee4(idReference) {
-    var attributes, img, url;
+var getAttributes = /*#__PURE__*/function () {
+  var _ref4 = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee4(idSku) {
+    var url, response;
     return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee4$(_context4) {
       while (1) {
         switch (_context4.prev = _context4.next) {
           case 0:
-            _context4.next = 2;
+            url = "admin/attributes/".concat(idSku);
+            _context4.prev = 1;
+            _context4.next = 4;
+            return (0,_utils_FetchData__WEBPACK_IMPORTED_MODULE_1__.getData)(url);
+
+          case 4:
+            response = _context4.sent;
+
+            if (!(response.ok === true && response.status === 200)) {
+              _context4.next = 7;
+              break;
+            }
+
+            return _context4.abrupt("return", response.data.data);
+
+          case 7:
+            _context4.next = 12;
+            break;
+
+          case 9:
+            _context4.prev = 9;
+            _context4.t0 = _context4["catch"](1);
+            console.log(_context4.t0);
+
+          case 12:
+          case "end":
+            return _context4.stop();
+        }
+      }
+    }, _callee4, null, [[1, 9]]);
+  }));
+
+  return function getAttributes(_x4) {
+    return _ref4.apply(this, arguments);
+  };
+}();
+
+var handleChangeReference = /*#__PURE__*/function () {
+  var _ref5 = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee5(idReference) {
+    var attributes, img, url, available;
+    return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee5$(_context5) {
+      while (1) {
+        switch (_context5.prev = _context5.next) {
+          case 0:
+            _context5.next = 2;
             return getAttributes(parseInt(idReference));
 
           case 2:
-            attributes = _context4.sent;
+            attributes = _context5.sent;
             $tdColor.textContent = "";
             $tdFreno.textContent = "";
             $tdRin.textContent = "";
@@ -3176,43 +3223,57 @@ var handleChangeReference = /*#__PURE__*/function () {
               $containerImage.append(img);
             }
 
-          case 10:
+            _context5.next = 12;
+            return availableBikes(idReference);
+
+          case 12:
+            available = _context5.sent;
+            $spanAvailable.textContent = available;
+            $noteAvailable.textContent = "";
+            $btnRental.disabled = false;
+
+            if (available <= 0) {
+              $noteAvailable.textContent = "No puedes alquilar porque no hay stock de está referencia.";
+              $btnRental.disabled = true;
+            }
+
+          case 17:
           case "end":
-            return _context4.stop();
+            return _context5.stop();
         }
       }
-    }, _callee4);
+    }, _callee5);
   }));
 
-  return function handleChangeReference(_x4) {
-    return _ref4.apply(this, arguments);
+  return function handleChangeReference(_x5) {
+    return _ref5.apply(this, arguments);
   };
 }();
 
 var handleChange = /*#__PURE__*/function () {
-  var _ref5 = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee5(idPrice) {
+  var _ref6 = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee6(idPrice) {
     var price, references, arrayOption;
-    return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee5$(_context5) {
+    return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee6$(_context6) {
       while (1) {
-        switch (_context5.prev = _context5.next) {
+        switch (_context6.prev = _context6.next) {
           case 0:
-            _context5.next = 2;
+            _context6.next = 2;
             return getPrice(idPrice);
 
           case 2:
-            price = _context5.sent;
+            price = _context6.sent;
             $card.querySelector(".card-header").textContent = "Bicicleta - " + price.category.name;
-            _context5.next = 6;
+            _context6.next = 6;
             return getSkus(price.category.id);
 
           case 6:
-            references = _context5.sent;
+            references = _context6.sent;
             arrayOption = [];
             $selectSku.innerHTML = "";
             references.map(function (reference) {
               var option = document.createElement("option");
               option.value = reference.id;
-              option.textContent = reference = "".concat(reference.id, " - ").concat(reference.name);
+              option.textContent = "".concat(reference.id, " - ").concat(reference.name);
               arrayOption.push(option);
             });
             $selectSku.append.apply($selectSku, arrayOption);
@@ -3225,14 +3286,14 @@ var handleChange = /*#__PURE__*/function () {
 
           case 14:
           case "end":
-            return _context5.stop();
+            return _context6.stop();
         }
       }
-    }, _callee5);
+    }, _callee6);
   }));
 
-  return function handleChange(_x5) {
-    return _ref5.apply(this, arguments);
+  return function handleChange(_x6) {
+    return _ref6.apply(this, arguments);
   };
 }();
 
@@ -3254,26 +3315,26 @@ var formatPrice = function formatPrice(price) {
 };
 
 var initViewPrices = function initViewPrices() {
-  window.addEventListener("DOMContentLoaded", /*#__PURE__*/_asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee6() {
-    return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee6$(_context6) {
+  window.addEventListener("DOMContentLoaded", /*#__PURE__*/_asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee7() {
+    return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee7$(_context7) {
       while (1) {
-        switch (_context6.prev = _context6.next) {
+        switch (_context7.prev = _context7.next) {
           case 0:
             if (!$sectionPrices) {
-              _context6.next = 4;
+              _context7.next = 4;
               break;
             }
 
             changeSelect();
-            _context6.next = 4;
+            _context7.next = 4;
             return handleChange(parseInt($selectPrices.value));
 
           case 4:
           case "end":
-            return _context6.stop();
+            return _context7.stop();
         }
       }
-    }, _callee6);
+    }, _callee7);
   })));
 };
 

@@ -21,13 +21,6 @@ class RentalPricingController extends Controller
         return view("admin/rentals/prices", compact(['prices', 'categories']));
     }
 
-
-    public function create()
-    {
-        //
-    }
-
-
     public function store(Request $request)
     {
 
@@ -63,13 +56,6 @@ class RentalPricingController extends Controller
             200
         );
     }
-
-
-    public function edit(RentalPricing $rentalPricing)
-    {
-        //
-    }
-
 
     public function update(Request $request, int $rentalPricing)
     {

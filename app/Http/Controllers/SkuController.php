@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Sku;
 use App\Category;
 use App\Attribute;
+use App\Bike;
 use Illuminate\Http\Request;
 
 class SkuController extends Controller
@@ -12,7 +13,7 @@ class SkuController extends Controller
 
     public function __construct()
     {
-        $this->middleware('auth', ['except' => ['skusForCategory']]);
+        $this->middleware('auth', ['except' => ['skusForCategory', 'available']]);
     }
 
 
@@ -173,6 +174,23 @@ class SkuController extends Controller
             [
                 'success' => true,
                 'data' => $skus
+            ],
+            200
+        );
+    }
+
+    public function available(int $id)
+    {
+
+        $quantity = Bike::where([
+            ['status', '=', 'D'],
+            ['sku_id', '=', $id]
+        ])->count();
+
+        return response()->json(
+            [
+                'success' => true,
+                'data' => $quantity
             ],
             200
         );

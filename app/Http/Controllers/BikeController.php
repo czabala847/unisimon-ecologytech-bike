@@ -9,15 +9,17 @@ use Illuminate\Http\Request;
 class BikeController extends Controller
 {
 
+    public function __construct()
+    {
+        $this->middleware('auth', ['except' => ['show']]);
+    }
+
+
     public function index()
     {
         $bikes = Bike::all();
         $skus = Sku::all();
         return view('admin/bikes/index', compact('bikes', 'skus'));
-    }
-
-    public function create()
-    {
     }
 
     public function store(Request $request)
@@ -60,12 +62,6 @@ class BikeController extends Controller
             200
         );
     }
-
-
-    public function edit(Bike $bike)
-    {
-    }
-
 
     public function update(Request $request, int $bike)
     {

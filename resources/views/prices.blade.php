@@ -51,6 +51,11 @@
                                                     class="text-success font-weight-bold"></span> COP
                                                 por hora.
                                             </p>
+                                            <p>
+                                                <b>Disponibilidad</b>: <span id="spanAvailable"
+                                                    class="text-success font-weight-bold"></span><br>
+                                                <small class="text-danger" id="noteAvailable"></small>
+                                            </p>
                                             <label for="sku_id">Seleccione una referencia</label>
                                             <select class="form-control" id="sku_id" name="sku_id" required>
                                             </select>
@@ -86,7 +91,7 @@
                                                 </figure>
                                             </div>
                                         </div>
-                                        <button type="submit" class="btn btn-lg btn-primary"><i
+                                        <button id="btnRental" type="submit" class="btn btn-lg btn-primary"><i
                                                 class="fas fa-ticket-alt"></i>
                                             Alquilar</button>
                                     </div>
