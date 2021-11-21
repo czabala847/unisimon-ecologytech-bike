@@ -10,10 +10,15 @@ class Bike extends Model
     use SoftDeletes;
 
     protected $fillable = [
-        'sku_id', 'status'
+        'code', 'sku_id', 'status'
     ];
 
     protected $hidden = [
         'deleted_at', 'created_at', 'updated_at',
     ];
+
+    public function sku()
+    {
+        return $this->belongsTo(Sku::class);
+    }
 }

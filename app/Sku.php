@@ -26,4 +26,9 @@ class Sku extends Model
     {
         return $this->belongsTo(Category::class);
     }
+
+    public function bikes()
+    {
+        return $this->hasMany(Bike::class);
+    }
 }

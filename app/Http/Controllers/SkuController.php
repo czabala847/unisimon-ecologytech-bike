@@ -108,6 +108,12 @@ class SkuController extends Controller
     public function destroy(int $sku)
     {
         $skuDelete = Sku::find($sku);
+
+        if ($skuDelete->bikes->count() > 0) {
+
+            return back()->with('error', 'No se puede eliminar el SKU porque esta siendo usado en una bicicleta.');
+        }
+
         $skuDelete->delete();
 
         Attribute::where('sku_id', $sku)->delete();

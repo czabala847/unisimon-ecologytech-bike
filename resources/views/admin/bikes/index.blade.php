@@ -5,7 +5,7 @@
 @section('content_header')
     <div class="d-flex my-3">
         <h1 class="d-inline">Bicicletas</h1>
-        <a class="btn btn-primary ml-2" href="{{ route('bikes.create') }}">Nueva</a>
+        <button class="btn btn-primary ml-2" id="btnNewBike"><i class="fas fa-plus-circle"></i> Nueva</button>
     </div>
 @stop
 
@@ -15,6 +15,15 @@
         @if (session('status'))
             <div class="alert alert-success alert-dismissible fade show" role="alert">
                 {{ session('status') }}
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+        @endif
+
+        @if (session('error'))
+            <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                {{ session('error') }}
                 <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
@@ -40,29 +49,36 @@
                     <table class="table" id="bike_table">
                         <thead>
                             <tr>
-                                <th scope="col">#</th>
                                 <th scope="col">Id</th>
-                                <th scope="col">Categoría</th>
+                                <th scope="col">Código</th>
+                                <th scope="col">Estado</th>
                                 <th scope="col">Sku</th>
-                                <th scope="col">Nombre</th>
-                                <th scope="col">Precio</th>
+                                <th scope="col">Nombre Sku</th>
                                 <th scope="col">Opciones</th>
                             </tr>
                         </thead>
                         <tbody>
                             @foreach ($bikes as $bike)
-                                {{-- <tr>
-                                    <th scope="row">{{ $category->id }}</th>
-                                    <td>{{ $category->name }}</td>
-                                    <td>{{ $category->description }}</td>
+                                <tr>
+                                    <th scope="row">{{ $bike->id }}</th>
+                                    <td>{{ $bike->code }}</td>
                                     <td>
-                                        <button data-id={{ $category->id }} data-action="edit" class="btn btn-warning">
+                                        @if ($bike->status === 'D')
+                                            <span class="badge badge-pill badge-success">Disponible</span>
+                                        @else
+                                            <span class="badge badge-pill badge-secondary">En prestamo</span>
+                                        @endif
+                                    </td>
+                                    <td>{{ $bike->sku->sku }}</td>
+                                    <td>{{ $bike->sku->name }}</td>
+                                    <td>
+                                        <button data-id={{ $bike->id }} data-action="edit" class="btn btn-warning">
                                             <i class="fas fa-edit"></i>
                                             <span>Editar</span>
                                         </button>
                                         <form id="formDelete" class="d-inline-block"
-                                            action="{{ route('categories.destroy', $category->id) }}" method="POST">
-                                            <button type="submit" data-action="delete" class="btn btn-danger">
+                                            action="{{ route('bikes.destroy', $bike->id) }}" method="POST">
+                                            <button type="button" data-action="delete" class="btn btn-danger">
                                                 <i class="fas fa-trash-alt"></i>
                                                 <span>Eliminar</span>
                                             </button>
@@ -70,7 +86,7 @@
                                             @method('DELETE')
                                         </form>
                                     </td>
-                                </tr> --}}
+                                </tr>
                             @endforeach
                         </tbody>
                     </table>
@@ -78,6 +94,55 @@
             </div>
         </div>
     </section>
+
+
+    <!-- Modal -->
+    <div class="modal fade" id="modalBike" tabindex="-1" aria-labelledby="modalBikeLabel" aria-hidden="true">
+        <div class="modal-dialog modal-xl">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="modalBikeLabel">Nueva Categoria</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form id="form-bike" autocomplete="off" method="POST" data-url="{{ route('bikes.store') }}"
+                        action="{{ route('bikes.store') }}">
+                        <div class="form-group">
+                            <label for="sku_id">SKU</label>
+                            <select class="form-control" id="sku_id" name="sku_id" required>
+                                @foreach ($skus as $sku)
+                                    <option value="{{ $sku->id }}">{{ $sku->sku }}</option>
+                                @endforeach
+                            </select>
+                            @if (count($skus) === 0)
+                                <small class="text-danger">No hay skus creados, debe primero crear uno.</small>
+                            @endif
+                        </div>
+                        <div class="form-group">
+                            <label for="code">Código</label>
+                            <input type="text" name="code" class="form-control" id="code" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="status">Estado</label>
+                            <select class="form-control" id="status" name="status" required>
+                                <option value="D">Disponible</option>
+                                <option value="P">En prestamo</option>
+                            </select>
+                        </div>
+                        <button type="submit" class="btn btn-primary"><i class="fas fa-save"></i> Guardar</button>
+                        @csrf
+                        @method('POST')
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                </div>
+
+            </div>
+        </div>
+    </div>
 
 @stop
 

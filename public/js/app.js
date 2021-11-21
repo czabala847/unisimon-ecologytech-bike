@@ -2158,6 +2158,211 @@ module.exports = {
 
 /***/ }),
 
+/***/ "./resources/js/Admin/Bikes/index.js":
+/*!*******************************************!*\
+  !*** ./resources/js/Admin/Bikes/index.js ***!
+  \*******************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "initBikes": () => (/* binding */ initBikes)
+/* harmony export */ });
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _utils_FetchData__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../utils/FetchData */ "./resources/js/utils/FetchData.js");
+
+
+function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
+
+function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
+
+
+var $sectionCategories = document.querySelector(".Bikes");
+var $table = document.querySelector("#bike_table") || null;
+var $modal = document.querySelector("#modalBike") || null;
+var $btnModalNew = document.querySelector("#btnNewBike") || null;
+var $modalLabel = $modal ? $modal.querySelector("#modalBikeLabel") : null;
+var $form = $modal ? $modal.querySelector("#form-bike") : null;
+
+var initDataTable = function initDataTable() {
+  if ($table) {
+    $("#bike_table").DataTable({
+      // dom: "Bfrtip",
+      // buttons: ["copy", "csv", "excel", "pdf", "print"],
+      aProcessing: true,
+      aServerSide: true,
+      language: {
+        url: "//cdn.datatables.net/plug-ins/1.10.20/i18n/Spanish.json"
+      },
+      pageLength: 25,
+      responsive: "true",
+      bDestroy: true,
+      order: [[0, "asc"]]
+    });
+  }
+};
+
+var getBike = /*#__PURE__*/function () {
+  var _ref = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee(idBike) {
+    var url, response;
+    return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee$(_context) {
+      while (1) {
+        switch (_context.prev = _context.next) {
+          case 0:
+            url = "admin/bicicletas/".concat(idBike);
+            _context.prev = 1;
+            _context.next = 4;
+            return (0,_utils_FetchData__WEBPACK_IMPORTED_MODULE_1__.getData)(url);
+
+          case 4:
+            response = _context.sent;
+
+            if (!(response.ok === true && response.status === 200)) {
+              _context.next = 7;
+              break;
+            }
+
+            return _context.abrupt("return", response.data.data);
+
+          case 7:
+            _context.next = 12;
+            break;
+
+          case 9:
+            _context.prev = 9;
+            _context.t0 = _context["catch"](1);
+            console.log(_context.t0);
+
+          case 12:
+          case "end":
+            return _context.stop();
+        }
+      }
+    }, _callee, null, [[1, 9]]);
+  }));
+
+  return function getBike(_x) {
+    return _ref.apply(this, arguments);
+  };
+}();
+
+var deleteBike = function deleteBike() {
+  if ($table) {
+    $table.addEventListener("click", /*#__PURE__*/function () {
+      var _ref2 = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee2(e) {
+        var btn;
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee2$(_context2) {
+          while (1) {
+            switch (_context2.prev = _context2.next) {
+              case 0:
+                btn = e.target.closest("button");
+
+                if (btn !== null && btn.dataset.action === "delete") {
+                  Swal.fire({
+                    title: "Seguro que quieres eliminar la categoría?",
+                    showCancelButton: true,
+                    confirmButtonText: "Eliminar",
+                    cancelButtonText: "Cancelar"
+                  }).then(function (result) {
+                    /* Read more about isConfirmed, isDenied below */
+                    if (result.isConfirmed) {
+                      btn.parentElement.submit();
+                    }
+                  });
+                }
+
+              case 2:
+              case "end":
+                return _context2.stop();
+            }
+          }
+        }, _callee2);
+      }));
+
+      return function (_x2) {
+        return _ref2.apply(this, arguments);
+      };
+    }());
+  }
+};
+
+var showModalEdit = function showModalEdit() {
+  if ($table) {
+    $table.addEventListener("click", /*#__PURE__*/function () {
+      var _ref3 = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee3(e) {
+        var btn, idBike, bike;
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee3$(_context3) {
+          while (1) {
+            switch (_context3.prev = _context3.next) {
+              case 0:
+                btn = e.target.closest("button");
+
+                if (!(btn !== null && btn.dataset.action === "edit")) {
+                  _context3.next = 15;
+                  break;
+                }
+
+                $modalLabel.textContent = "Editar Bicicleta";
+                idBike = btn.dataset.id;
+                _context3.next = 6;
+                return getBike(idBike);
+
+              case 6:
+                bike = _context3.sent;
+                debugger;
+                $form.querySelector("#sku_id").value = bike.sku_id;
+                $form.querySelector("#code").value = bike.code;
+                $form.querySelector("#code").disabled = true;
+                $form.querySelector("#status").value = bike.status;
+                $form.action = $form.dataset.url + "/" + idBike;
+                $form.querySelector("input[name='_method']").value = "PUT";
+                $("#modalBike").modal("show");
+
+              case 15:
+              case "end":
+                return _context3.stop();
+            }
+          }
+        }, _callee3);
+      }));
+
+      return function (_x3) {
+        return _ref3.apply(this, arguments);
+      };
+    }());
+  }
+};
+
+var showModalNew = function showModalNew() {
+  if ($btnModalNew) {
+    $btnModalNew.addEventListener("click", function (e) {
+      $modalLabel.textContent = "Nueva Bicicleta";
+      $form.querySelector("#code").value = "";
+      $form.querySelector("#code").disabled = false;
+      $form.action = $form.dataset.url;
+      $form.querySelector("input[name='_method']").value = "POST";
+      $("#modalBike").modal("show");
+    });
+  }
+};
+
+var initBikes = function initBikes() {
+  window.addEventListener("DOMContentLoaded", function () {
+    if ($sectionCategories) {
+      showModalNew();
+      initDataTable();
+      deleteBike();
+      showModalEdit();
+    }
+  });
+};
+
+
+
+/***/ }),
+
 /***/ "./resources/js/Admin/Categories/index.js":
 /*!************************************************!*\
   !*** ./resources/js/Admin/Categories/index.js ***!
@@ -3090,7 +3295,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _Admin_Skus_index_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./Admin/Skus/index.js */ "./resources/js/Admin/Skus/index.js");
 /* harmony import */ var _Admin_Rentals_prices_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./Admin/Rentals/prices.js */ "./resources/js/Admin/Rentals/prices.js");
 /* harmony import */ var _Prices_index_js__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./Prices/index.js */ "./resources/js/Prices/index.js");
+/* harmony import */ var _Admin_Bikes_index_js__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./Admin/Bikes/index.js */ "./resources/js/Admin/Bikes/index.js");
 __webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js");
+
 
 
 
@@ -3102,6 +3309,7 @@ __webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js");
 (0,_Admin_Skus_index_js__WEBPACK_IMPORTED_MODULE_2__.initSku)();
 (0,_Admin_Rentals_prices_js__WEBPACK_IMPORTED_MODULE_3__.initPrices)();
 (0,_Prices_index_js__WEBPACK_IMPORTED_MODULE_4__.initViewPrices)();
+(0,_Admin_Bikes_index_js__WEBPACK_IMPORTED_MODULE_5__.initBikes)();
 
 /***/ }),
 
