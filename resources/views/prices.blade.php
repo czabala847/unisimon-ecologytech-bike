@@ -31,8 +31,7 @@
                                         @endforeach
                                     </select>
                                 </div>
-                                <button type="submit" class="btn btn-lg btn-primary"><i class="fas fa-ticket-alt"></i>
-                                    Alquilar</button>
+
                                 {{-- </form> --}}
                             </div>
                         </div>
@@ -86,6 +85,9 @@
                                                 </figure>
                                             </div>
                                         </div>
+                                        <button type="submit" class="btn btn-lg btn-primary"><i
+                                                class="fas fa-ticket-alt"></i>
+                                            Alquilar</button>
                                     </div>
                                 </div>
                             </div>
