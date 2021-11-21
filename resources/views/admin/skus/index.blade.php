@@ -68,10 +68,12 @@
                                     <td>$ {{ number_format($sku->price) }}</td>
                                     <td>{{ number_format($sku->quantity) }}</td>
                                     <td>
-                                        <button data-id={{ $sku->id }} data-action="edit" class="btn btn-warning">
+
+                                        <a data-id={{ $sku->id }} data-action="edit"
+                                            href="{{ route('skus.edit', $sku) }}" class="btn btn-warning">
                                             <i class="fas fa-edit"></i>
                                             <span>Editar</span>
-                                        </button>
+                                        </a>
                                         <form class="d-inline-block" action="{{ route('skus.destroy', $sku->id) }}"
                                             method="POST">
                                             <button type="button" data-action="delete" class="btn btn-danger">

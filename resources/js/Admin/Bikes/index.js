@@ -75,7 +75,6 @@ const showModalEdit = () => {
                 $form.querySelector("#sku_id").value = bike.sku_id;
                 $form.querySelector("#code").value = bike.code;
                 $form.querySelector("#code").disabled = true;
-                $form.querySelector("#status").value = bike.status;
 
                 $form.action = $form.dataset.url + "/" + idBike;
                 $form.querySelector("input[name='_method']").value = "PUT";

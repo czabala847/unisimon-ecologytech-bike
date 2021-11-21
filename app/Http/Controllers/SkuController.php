@@ -97,12 +97,55 @@ class SkuController extends Controller
 
     public function edit(Sku $sku)
     {
-        //
+        $sku = Sku::findOrFail($sku->id);
+        $categories = Category::all();
+
+        $attributes = Attribute::where('sku_id', '=', $sku->id)->get();
+        // dd($attributes[0]);
+
+        return view('admin/skus/edit', compact(['categories', 'sku', 'attributes']));
     }
 
     public function update(Request $request, Sku $sku)
     {
-        //
+        $sku->update([
+            'category_id' => $request->category_id,
+            'name' => $request->name,
+            'price' => $request->price,
+        ]);
+
+        // si viene con file
+        if ($request->file('image')) {
+            $image = $request->file('image');
+            $nameImage = md5(time() . $image->getClientOriginalName());
+            $nameImage = $nameImage . "." . $image->getClientOriginalExtension();
+            $route = public_path() . '/images/upload';
+
+            $image->move($route, $nameImage);
+            $sku->image = $nameImage;
+        }
+
+        $sku->save();
+
+        $attributes = Attribute::where('sku_id', '=', $sku->id)->get();
+
+        $color = Attribute::find($attributes[0]->id);
+        $color->value = $request->color;
+        $color->save();
+
+        $brake = Attribute::find($attributes[1]->id);
+        $brake->value = $request->brake;
+        $brake->save();
+
+        $rin = Attribute::find($attributes[2]->id);
+        $rin->value = $request->rin;
+        $rin->save();
+
+        $speed = Attribute::find($attributes[3]->id);
+        $speed->value = $request->speed;
+        $speed->save();
+
+        return back()->with('status', 'SKU editado con éxito');
     }
 
     public function destroy(int $sku)

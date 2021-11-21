@@ -2300,7 +2300,7 @@ var showModalEdit = function showModalEdit() {
                 btn = e.target.closest("button");
 
                 if (!(btn !== null && btn.dataset.action === "edit")) {
-                  _context3.next = 15;
+                  _context3.next = 14;
                   break;
                 }
 
@@ -2315,12 +2315,11 @@ var showModalEdit = function showModalEdit() {
                 $form.querySelector("#sku_id").value = bike.sku_id;
                 $form.querySelector("#code").value = bike.code;
                 $form.querySelector("#code").disabled = true;
-                $form.querySelector("#status").value = bike.status;
                 $form.action = $form.dataset.url + "/" + idBike;
                 $form.querySelector("input[name='_method']").value = "PUT";
                 $("#modalBike").modal("show");
 
-              case 15:
+              case 14:
               case "end":
                 return _context3.stop();
             }

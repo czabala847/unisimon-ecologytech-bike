@@ -124,13 +124,6 @@
                             <label for="code">Código</label>
                             <input type="text" name="code" class="form-control" id="code" required>
                         </div>
-                        <div class="form-group">
-                            <label for="status">Estado</label>
-                            <select class="form-control" id="status" name="status" required>
-                                <option value="D">Disponible</option>
-                                <option value="P">En prestamo</option>
-                            </select>
-                        </div>
                         <button type="submit" class="btn btn-primary"><i class="fas fa-save"></i> Guardar</button>
                         @csrf
                         @method('POST')

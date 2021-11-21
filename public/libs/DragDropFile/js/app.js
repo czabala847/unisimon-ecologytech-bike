@@ -1,8 +1,11 @@
 //selecting all required elements
+
 const dropArea = document.querySelector(".drag-area"),
     dragText = dropArea.querySelector("header"),
     button = dropArea.querySelector("button"),
-    input = dropArea.querySelector("input");
+    input = dropArea.querySelector("input"),
+    edit = document.querySelector(".Sku__Edit");
+
 let file; //this is a global variable and we'll use it inside multiple functions
 
 button.onclick = () => {
@@ -17,27 +20,26 @@ input.addEventListener("change", function () {
 });
 
 //If user Drag File Over DropArea
-dropArea.addEventListener("dragover", (event) => {
-    event.preventDefault(); //preventing from default behaviour
-    dropArea.classList.add("active");
-    dragText.textContent = "Release to Upload File";
-});
+// dropArea.addEventListener("dragover", (event) => {
+//     event.preventDefault();
+//     dropArea.classList.add("active");
+//     dragText.textContent = "Release to Upload File";
+// });
 
 //If user leave dragged File from DropArea
-dropArea.addEventListener("dragleave", () => {
-    dropArea.classList.remove("active");
-    dragText.textContent = "Arrastra y suelta para cargar";
-});
+// dropArea.addEventListener("dragleave", () => {
+//     dropArea.classList.remove("active");
+//     dragText.textContent = "Arrastra y suelta para cargar";
+// });
 
 //If user drop File on DropArea
-dropArea.addEventListener("drop", (event) => {
-    event.preventDefault(); //preventing from default behaviour
-    //getting user select file and [0] this means if user select multiple files then we'll select only the first one
-    file = event.dataTransfer.files[0];
-    showFile(); //calling function
-});
+// dropArea.addEventListener("drop", (event) => {
+//     event.preventDefault();
+//     file = event.dataTransfer.files[0];
+//     showFile();
+// });
 
-function showFile() {
+async function showFile() {
     let fileType = file.type; //getting selected file type
     let validExtensions = ["image/jpeg", "image/jpg", "image/png"]; //adding some valid image extensions in array
     if (validExtensions.includes(fileType)) {
@@ -46,7 +48,7 @@ function showFile() {
         fileReader.onload = () => {
             let fileURL = fileReader.result; //passing user file source in fileURL variable
 
-            let imgTag = `<img src="${fileURL}" alt="">`; //creating an img tag and passing user selected file source inside src attribute
+            let imgTag = `<img onclick="handleClickImage()" src="${fileURL}" alt="">`; //creating an img tag and passing user selected file source inside src attribute
             dropArea.innerHTML = imgTag; //adding that created img tag inside dropArea container
             dropArea.append(input);
         };
@@ -62,3 +64,21 @@ function showFile() {
         dragText.textContent = "Arrastra y suelta para cargar";
     }
 }
+
+function handleClickImage() {
+    input.click();
+}
+
+function viewImage(img) {
+    let imgTag = `<img onclick="handleClickImage()" src="${img}" alt="">`; //creating an img tag and passing user selected file source inside src attribute
+    dropArea.innerHTML = imgTag; //adding that created img tag inside dropArea container
+    dropArea.append(input);
+}
+
+window.addEventListener("DOMContentLoaded", (e) => {
+    if (edit) {
+        const urlImage = dropArea.dataset.img;
+        viewImage(urlImage);
+        // debugger;
+    }
+});

@@ -7,7 +7,9 @@
 @stop
 
 @section('content')
-    <p>Welcome to this beautiful admin panel.</p>
+    <p>Bienvenido a Ecologitech Bike</p>
+    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Sed, nisi. Corporis ut aut dolor asperiores esse nemo quam
+        odio, laudantium repudiandae id accusantium amet nostrum, illum natus? Quas, dolorem ratione?</p>
 @stop
 
 @section('css')

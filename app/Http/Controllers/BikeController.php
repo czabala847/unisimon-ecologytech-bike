@@ -30,7 +30,6 @@ class BikeController extends Controller
                 [
                     'sku_id' => ['required'],
                     'code' => ['required'],
-                    'status' => ['required']
                 ]
             );
 
