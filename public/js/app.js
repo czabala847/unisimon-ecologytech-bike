@@ -2985,6 +2985,18 @@ function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try
 
 function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
 
+function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _unsupportedIterableToArray(arr) || _nonIterableSpread(); }
+
+function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+
+function _iterableToArray(iter) { if (typeof Symbol !== "undefined" && iter[Symbol.iterator] != null || iter["@@iterator"] != null) return Array.from(iter); }
+
+function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) return _arrayLikeToArray(arr); }
+
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
+
 
 var $sectionPrices = document.querySelector("#ViewPrices") || null;
 var $selectPrices = document.querySelector("#category_id") || null;
@@ -2999,6 +3011,42 @@ var $tdVelocidad = document.querySelector("#tdVelocidad") || null;
 var $containerImage = document.querySelector("#containerImage") || null;
 var $noteAvailable = document.querySelector("#noteAvailable") || null;
 var $btnRental = document.querySelector("#btnRental") || null;
+var $time = document.querySelectorAll(".TimeHour") || null;
+
+var createOption = function createOption(min) {
+  var start = 0;
+  var end = 24;
+  var arrayOptions = [];
+
+  for (var index = 0; index < end; index++) {
+    var option = document.createElement("option");
+    option.value = index;
+    var text = "";
+
+    if (index <= 9) {
+      text = "0".concat(index, " : 00");
+    } else {
+      text = "".concat(index, " : 00");
+    }
+
+    option.textContent = text;
+
+    if (parseInt(min) > index) {
+      option.disabled = true;
+    }
+
+    arrayOptions.push(option);
+  }
+
+  return arrayOptions;
+};
+
+var formTime = function formTime() {
+  _toConsumableArray($time).forEach(function (select) {
+    var times = createOption(select.dataset.min);
+    select.append.apply(select, _toConsumableArray(times));
+  });
+};
 
 var getPrice = /*#__PURE__*/function () {
   var _ref = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee(idPrice) {
@@ -3321,7 +3369,7 @@ var initViewPrices = function initViewPrices() {
         switch (_context7.prev = _context7.next) {
           case 0:
             if (!$sectionPrices) {
-              _context7.next = 4;
+              _context7.next = 5;
               break;
             }
 
@@ -3330,6 +3378,10 @@ var initViewPrices = function initViewPrices() {
             return handleChange(parseInt($selectPrices.value));
 
           case 4:
+            // await handleChangeReference(parseInt($selectSku.value));
+            formTime();
+
+          case 5:
           case "end":
             return _context7.stop();
         }

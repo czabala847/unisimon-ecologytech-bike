@@ -14,6 +14,44 @@ const $containerImage = document.querySelector("#containerImage") || null;
 const $noteAvailable = document.querySelector("#noteAvailable") || null;
 const $btnRental = document.querySelector("#btnRental") || null;
 
+const $time = document.querySelectorAll(".TimeHour") || null;
+
+const createOption = (min) => {
+    const start = 0;
+    const end = 24;
+    const arrayOptions = [];
+
+    for (let index = 0; index < end; index++) {
+        const option = document.createElement("option");
+        option.value = index;
+
+        let text = "";
+
+        if (index <= 9) {
+            text = `0${index} : 00`;
+        } else {
+            text = `${index} : 00`;
+        }
+
+        option.textContent = text;
+
+        if (parseInt(min) > index) {
+            option.disabled = true;
+        }
+
+        arrayOptions.push(option);
+    }
+
+    return arrayOptions;
+};
+
+const formTime = () => {
+    [...$time].forEach((select) => {
+        const times = createOption(select.dataset.min);
+        select.append(...times);
+    });
+};
+
 const getPrice = async (idPrice) => {
     const url = `admin/precios/${idPrice}`;
 
@@ -176,6 +214,8 @@ const initViewPrices = () => {
 
             await handleChange(parseInt($selectPrices.value));
             // await handleChangeReference(parseInt($selectSku.value));
+
+            formTime();
         }
     });
 };

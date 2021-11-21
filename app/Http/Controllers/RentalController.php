@@ -8,6 +8,17 @@ use Illuminate\Http\Request;
 class RentalController extends Controller
 {
 
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
+    public function pay(Request $request)
+    {
+
+        dd($request);
+    }
+
     public function index()
     {
     }

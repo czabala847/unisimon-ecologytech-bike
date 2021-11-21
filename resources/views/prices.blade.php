@@ -2,7 +2,9 @@
 
 @section('content')
     <section class="min-vh-100 w-100 ViewPrices" id="ViewPrices">
-        <form action="" class="w-100 px-3">
+        <form action="{{ route('rental.pay') }}" class="w-100 px-3" method="POST">
+            @csrf
+            @method('POST')
             <div class="row min-vh-100">
                 <div class="col-12 col-md-6  d-flex align-items-center justify-content-center flex-column ViewPrices__form">
                     <div class="container">
@@ -13,19 +15,41 @@
                                     Grandes ofertas. Los Precios Más Bajos. ¡Reserve y ahorre desde ya!
                                 </p>
                                 {{-- <form action="" class="w-100 px-3 mt-5"> --}}
-                                <div class="form-group">
-                                    <label for="date-start">Fecha de recogida</label>
-                                    <input type="datetime-local" class="form-control"
-                                        min="{{ date('Y-m-d') . 'T' . date('H:i') }}" id="date-start" required>
+                                <div class="form-group row">
+                                    <div class="col-12 col-md-6">
+                                        <label for="date-start">Fecha de recogida</label>
+                                        <input type="date" class="form-control" min="{{ date('Y-m-d') }}"
+                                            id="date-start" required>
+                                    </div>
+                                    <div class="col-12 col-md-6">
+                                        <label for="time-start">Hora de recogida</label>
+                                        <select name="time-start" id="time-start" class="form-control TimeHour"
+                                            data-min="{{ date('H') }}" required>
+
+                                        </select>
+                                        {{-- <input type="time" class="form-control" min="{{ date('T') }}" id="time-start"
+                                            step="3600" required> --}}
+                                    </div>
                                 </div>
-                                <div class="form-group">
-                                    <label for="date-end">Fecha de entrega</label>
-                                    <input type="datetime-local" class="form-control" id="date-end"
-                                        min="{{ date('Y-m-d') . 'T' . date('H:i') }}" required>
+                                <div class="form-group row">
+                                    <div class="col-12 col-md-6">
+                                        <label for="date-start">Fecha de entrega</label>
+                                        <input type="date" class="form-control" min="{{ date('Y-m-d') }}"
+                                            id="date-start" required>
+                                    </div>
+                                    <div class="col-12 col-md-6">
+                                        <label for="time-start">Hora de entrega</label>
+                                        <select name="time-start" id="time-start" class="form-control TimeHour"
+                                            data-min="{{ date('H') + 1 }}" required>
+
+                                        </select>
+                                        {{-- <input type="time" class="form-control" min="{{ date('T') }}" id="time-start"
+                                            step="3600" required> --}}
+                                    </div>
                                 </div>
                                 <div class="form-group">
                                     <label for="category">Planes</label>
-                                    <select class="form-control" id="category_id" name="category_id" required>
+                                    <select class="form-control" id="category_id" name="category_id" step="3600" required>
                                         @foreach ($rentalPricing as $rental)
                                             <option value="{{ $rental->id }}">Plan bicicleta -
                                                 {{ $rental->category->name }}</option>
