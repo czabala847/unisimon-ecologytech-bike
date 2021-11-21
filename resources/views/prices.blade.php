@@ -18,12 +18,12 @@
                                 <div class="form-group row">
                                     <div class="col-12 col-md-6">
                                         <label for="date-start">Fecha de recogida</label>
-                                        <input type="date" class="form-control" min="{{ date('Y-m-d') }}"
-                                            id="date-start" required>
+                                        <input type="date" name="date_start" class="form-control"
+                                            min="{{ date('Y-m-d') }}" id="date-start" required>
                                     </div>
                                     <div class="col-12 col-md-6">
                                         <label for="time-start">Hora de recogida</label>
-                                        <select name="time-start" id="time-start" class="form-control TimeHour"
+                                        <select name="time_start" id="time-start" class="form-control TimeHour"
                                             data-min="{{ date('H') }}" required>
 
                                         </select>
@@ -35,11 +35,11 @@
                                     <div class="col-12 col-md-6">
                                         <label for="date-start">Fecha de entrega</label>
                                         <input type="date" class="form-control" min="{{ date('Y-m-d') }}"
-                                            id="date-start" required>
+                                            id="date-start" name="date_end" required>
                                     </div>
                                     <div class="col-12 col-md-6">
                                         <label for="time-start">Hora de entrega</label>
-                                        <select name="time-start" id="time-start" class="form-control TimeHour"
+                                        <select name="time_end" id="time-start" class="form-control TimeHour"
                                             data-min="{{ date('H') + 1 }}" required>
 
                                         </select>

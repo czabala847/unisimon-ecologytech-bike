@@ -273,8 +273,8 @@ return [
             'label_color' => 'success',
         ],
         [
-            'text'        => 'Prestamos',
-            'icon'        => 'fas fa-bookmark',
+            'text'        => 'Alquiler',
+            'icon'        => 'fas fa-dollar-sign',
             'submenu' => [
                 [
                     'text' => 'Precios',
