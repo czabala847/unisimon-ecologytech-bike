@@ -78,15 +78,24 @@
                                 <form class="w-100" style="overflow: hidden">
                                     <div class="form-group row">
                                         <div class="col-9">
-                                            <label for="card-numer">Número de tarjeta</label>
-                                            <input type="number" class="form-control" id="card-numer" required>
+                                            <label for="card_numer">Número de tarjeta</label>
+                                            <input type="number" class="form-control" id="card_numer" name="card_number"
+                                                required>
                                         </div>
                                         <div class="col-3">
                                             <label for="cvv">CVV</label>
-                                            <input type="number" class="form-control" id="cvv">
+                                            <input type="number" class="form-control" name="cvv" id="cvv">
                                         </div>
                                     </div>
                                     <input type="hidden" name="bike_id" id="bike_id" value="{{ $bike->id }}">
+                                    <input type="hidden" name="date_start" id="date_start"
+                                        value="{{ $dataRental['dateStart'] }} {{ $dataRental['timeStart'] . ':00:00' }}">
+                                    <input type="hidden" name="date_end" id="date_end"
+                                        value="{{ $dataRental['dateEnd'] }} {{ $dataRental['timeEnd'] . ':00:00' }}">
+                                    <input type="hidden" name="totalHours" id="totalHours"
+                                        value="{{ $dataRental['totalHours'] }}">
+                                    <input type="hidden" name="totalPay" id="totalPay"
+                                        value="{{ $rentalPricing->price * $dataRental['totalHours'] }}">
                                     <button type="submit" class="btn btn-primary"><i class="fas fa-dollar-sign"></i>
                                         Pagar</button>
                                 </form>

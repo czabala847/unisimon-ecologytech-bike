@@ -21,4 +21,9 @@ class Bike extends Model
     {
         return $this->belongsTo(Sku::class);
     }
+
+    public function rentals()
+    {
+        return $this->hasMany(Rental::class);
+    }
 }
