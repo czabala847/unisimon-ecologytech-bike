@@ -9,6 +9,10 @@ use Illuminate\Http\Request;
 class RentalPricingController extends Controller
 {
 
+    public function __construct()
+    {
+        $this->middleware('auth', ['except' => ['pricesView', 'getRentalPricing', 'show']]);
+    }
 
     public function index()
     {

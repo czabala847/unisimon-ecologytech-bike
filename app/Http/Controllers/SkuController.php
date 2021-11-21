@@ -10,6 +10,12 @@ use Illuminate\Http\Request;
 class SkuController extends Controller
 {
 
+    public function __construct()
+    {
+        $this->middleware('auth', ['except' => ['skusForCategory']]);
+    }
+
+
     public function index()
     {
         $skus = Sku::all();

@@ -79,14 +79,18 @@ const handleChangeReference = async (idReference) => {
 
     $containerImage.innerHTML = "";
 
-    const img = document.createElement("img");
-    img.classList.add("img-fluid");
-    const url =
-        window.location.origin + "/images/upload/" + attributes[0].sku.image;
+    if (attributes.length > 0) {
+        const img = document.createElement("img");
+        img.classList.add("img-fluid");
+        const url =
+            window.location.origin +
+            "/images/upload/" +
+            attributes[0].sku.image;
 
-    img.src = url;
+        img.src = url;
 
-    $containerImage.append(img);
+        $containerImage.append(img);
+    }
 };
 
 const handleChange = async (idPrice) => {

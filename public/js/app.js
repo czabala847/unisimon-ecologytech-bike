@@ -2963,13 +2963,16 @@ var handleChangeReference = /*#__PURE__*/function () {
               }
             });
             $containerImage.innerHTML = "";
-            img = document.createElement("img");
-            img.classList.add("img-fluid");
-            url = window.location.origin + "/images/upload/" + attributes[0].sku.image;
-            img.src = url;
-            $containerImage.append(img);
 
-          case 14:
+            if (attributes.length > 0) {
+              img = document.createElement("img");
+              img.classList.add("img-fluid");
+              url = window.location.origin + "/images/upload/" + attributes[0].sku.image;
+              img.src = url;
+              $containerImage.append(img);
+            }
+
+          case 10:
           case "end":
             return _context4.stop();
         }
