@@ -10351,7 +10351,6 @@ textarea {
   z-index: 6;
 }
 .Hero .overlay-texture {
-  background-image: url(/images/cross-stripes.png?7a746a2c56cdb093a0d38e9b7d6f2345);
   opacity: 0.5;
   z-index: 7;
 }
@@ -10427,11 +10426,33 @@ textarea {
 |             PRICES LIST                |
 \****************************************/
 .ViewPrices {
-  background-image: url(/images/pexels-pixabay-210117.jpg?470ddb81ded9cacb90b35e80c9334261);
+  background-image: url(/images/josh-nuttall-zkVi57UYHIQ-unsplash.jpg?79b75f96b7f7cbfeaabd412826796cb2);
   background-size: cover;
 }
 .ViewPrices__form {
   background-color: rgba(0, 0, 0, 0.9);
+  color: #fff;
+}
+.ViewPrices__left {
+  background: black;
+  background: linear-gradient(90deg, rgba(0, 0, 0, 0.9) 0%, rgba(0, 0, 0, 0) 100%);
+}
+
+.Info {
+  position: relative;
+}
+.Info__icon {
+  position: absolute;
+  right: 0;
+  top: 0;
+  font-size: 12rem;
+  opacity: 0.1;
+}
+.Info article {
+  transition: 0.3s;
+}
+.Info article:hover {
+  transform: scale(1.05);
 }
 
 body {

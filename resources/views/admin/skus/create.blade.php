@@ -78,8 +78,7 @@
                                 <div class="col-12 col-md-6">
                                     <div class="drag-area">
                                         <div class="icon"><i class="fas fa-cloud-upload-alt"></i></div>
-                                        <header>Arrastra y suelta para cargar</header>
-                                        <span>o</span>
+                                        {{-- <header>Imagen</header> --}}
                                         <button type="button">Busca una imagen</button>
                                         <input type="file" name="image" class="mb-3 d-none" required />
                                     </div>

@@ -23,11 +23,14 @@ Route::get('/home', 'HomeController@index')->name('home');
 
 Route::resource('admin/categorias', 'CategoryController')->names('categories')->except(['create', 'edit']);
 Route::resource('admin/bicicletas', 'BikeController')->names('bikes');
+
+Route::get('admin/skusCategory/{idCategory}', 'SkuController@skusForCategory');
 Route::resource('admin/skus', 'SkuController')->names('skus');
 
-
-Route::get('prestamos/precios', 'RentalPricingController@pricesView');
+Route::get('alquiler', 'RentalPricingController@pricesView');
+Route::get('alquiler/show', 'RentalPricingController@getRentalPricing');
 Route::resource('admin/precios', 'RentalPricingController')->names('prices')->except(['create', 'edit']);
 
+Route::get('admin/attributes/{idSku}', 'AttributeController@getAttributes');
 
 // Route::get('/alquiler', '')

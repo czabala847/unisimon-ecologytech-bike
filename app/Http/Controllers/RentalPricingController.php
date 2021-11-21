@@ -9,10 +9,6 @@ use Illuminate\Http\Request;
 class RentalPricingController extends Controller
 {
 
-    public function pricesView()
-    {
-        return view("prices");
-    }
 
     public function index()
     {
@@ -53,7 +49,7 @@ class RentalPricingController extends Controller
 
     public function show(int $rentalPricing)
     {
-        $price = RentalPricing::findOrFail($rentalPricing);
+        $price = RentalPricing::with('category')->findOrFail($rentalPricing);
 
         return response()->json(
             [
@@ -99,5 +95,17 @@ class RentalPricingController extends Controller
         $priceDelete->delete();
         // dd($categoryDelete);
         return back()->with('status', 'Tarifa eliminada con éxito');
+    }
+
+    public function pricesView()
+    {
+        $rentalPricing = RentalPricing::all();
+        return view("prices", compact('rentalPricing'));
+    }
+
+    public function getRentalPricing()
+    {
+
+        return RentalPricing::with('category')->get();
     }
 }

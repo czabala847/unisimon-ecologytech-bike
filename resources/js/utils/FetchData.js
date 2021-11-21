@@ -5,7 +5,24 @@
  * @returns {Object}
  */
 const getData = async (url, data) => {
-    const urlFetch = "http://127.0.0.1:8000/" + url;
+    // debugger;
+    let requireToken = false;
+    let token = "";
+    let urlLocation = "";
+
+    if (window.location.hostname === "localhost") {
+        urlLocation =
+            window.location.origin + "/unisimon-ecologitech-bike/public/";
+
+        requireToken = true;
+        token = document
+            .querySelector("meta[name='csrf-token']")
+            .getAttribute("content");
+    } else {
+        urlLocation = window.location.origin + "/";
+    }
+
+    const urlFetch = urlLocation + url;
     let config;
 
     if (data) {
@@ -13,6 +30,20 @@ const getData = async (url, data) => {
             method: "POST",
             body: data,
         };
+    }
+
+    if (requireToken) {
+        if (config) {
+            config.headers = {
+                "X-CSRF-TOKEN": token,
+            };
+        } else {
+            config = {
+                headers: {
+                    "X-CSRF-TOKEN": token,
+                },
+            };
+        }
     }
 
     try {

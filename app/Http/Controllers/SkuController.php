@@ -109,4 +109,17 @@ class SkuController extends Controller
         // dd($categoryDelete);
         return back()->with('status', 'SKU eliminado con éxito');
     }
+
+    public function skusForCategory(int $idCategory)
+    {
+
+        $skus = Sku::where('category_id', '=', $idCategory)->get();
+        return response()->json(
+            [
+                'success' => true,
+                'data' => $skus
+            ],
+            200
+        );
+    }
 }

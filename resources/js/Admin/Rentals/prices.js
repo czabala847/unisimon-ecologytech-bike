@@ -47,7 +47,7 @@ const deletePrice = () => {
     if ($table) {
         $table.addEventListener("click", async (e) => {
             const btn = e.target.closest("button");
-            const formParent = btn.parentElement;
+            // const formParent = btn.parentElement;
             if (btn !== null && btn.dataset.action === "delete") {
                 Swal.fire({
                     title: "Seguro que quieres eliminar la categoría?",
@@ -57,7 +57,7 @@ const deletePrice = () => {
                 }).then((result) => {
                     /* Read more about isConfirmed, isDenied below */
                     if (result.isConfirmed) {
-                        formParent.submit();
+                        btn.parentElement.submit();
                     }
                 });
             }

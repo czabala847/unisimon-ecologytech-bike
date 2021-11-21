@@ -2309,13 +2309,14 @@ var deleteCategory = function deleteCategory() {
   if ($table) {
     $table.addEventListener("click", /*#__PURE__*/function () {
       var _ref3 = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee3(e) {
-        var btn, formParent;
+        var btn;
         return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee3$(_context3) {
           while (1) {
             switch (_context3.prev = _context3.next) {
               case 0:
-                btn = e.target.closest("button");
-                formParent = btn.parentElement;
+                btn = e.target.closest("button"); // if (btn) {
+                //     const formParent = btn.parentElement;
+                // }
 
                 if (btn !== null && btn.dataset.action === "delete") {
                   Swal.fire({
@@ -2326,12 +2327,12 @@ var deleteCategory = function deleteCategory() {
                   }).then(function (result) {
                     /* Read more about isConfirmed, isDenied below */
                     if (result.isConfirmed) {
-                      formParent.submit();
+                      btn.parentElement.submit();
                     }
                   });
                 }
 
-              case 3:
+              case 2:
               case "end":
                 return _context3.stop();
             }
@@ -2441,13 +2442,12 @@ var deletePrice = function deletePrice() {
   if ($table) {
     $table.addEventListener("click", /*#__PURE__*/function () {
       var _ref = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee(e) {
-        var btn, formParent;
+        var btn;
         return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee$(_context) {
           while (1) {
             switch (_context.prev = _context.next) {
               case 0:
-                btn = e.target.closest("button");
-                formParent = btn.parentElement;
+                btn = e.target.closest("button"); // const formParent = btn.parentElement;
 
                 if (btn !== null && btn.dataset.action === "delete") {
                   Swal.fire({
@@ -2458,12 +2458,12 @@ var deletePrice = function deletePrice() {
                   }).then(function (result) {
                     /* Read more about isConfirmed, isDenied below */
                     if (result.isConfirmed) {
-                      formParent.submit();
+                      btn.parentElement.submit();
                     }
                   });
                 }
 
-              case 3:
+              case 2:
               case "end":
                 return _context.stop();
             }
@@ -2672,13 +2672,12 @@ var deleteSku = function deleteSku() {
   if ($table) {
     $table.addEventListener("click", /*#__PURE__*/function () {
       var _ref = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee(e) {
-        var btn, formParent;
+        var btn;
         return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee$(_context) {
           while (1) {
             switch (_context.prev = _context.next) {
               case 0:
-                btn = e.target.closest("button");
-                formParent = btn.parentElement;
+                btn = e.target.closest("button"); // const formParent = btn.parentElement;
 
                 if (btn !== null && btn.dataset.action === "delete") {
                   Swal.fire({
@@ -2689,12 +2688,12 @@ var deleteSku = function deleteSku() {
                   }).then(function (result) {
                     /* Read more about isConfirmed, isDenied below */
                     if (result.isConfirmed) {
-                      formParent.submit();
+                      btn.parentElement.submit();
                     }
                   });
                 }
 
-              case 3:
+              case 2:
               case "end":
                 return _context.stop();
             }
@@ -2762,6 +2761,319 @@ var initHome = function initHome() {
 
 /***/ }),
 
+/***/ "./resources/js/Prices/index.js":
+/*!**************************************!*\
+  !*** ./resources/js/Prices/index.js ***!
+  \**************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "initViewPrices": () => (/* binding */ initViewPrices)
+/* harmony export */ });
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _utils_FetchData__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../utils/FetchData */ "./resources/js/utils/FetchData.js");
+
+
+function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
+
+function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
+
+
+var $sectionPrices = document.querySelector("#ViewPrices") || null;
+var $selectPrices = document.querySelector("#category_id") || null;
+var $card = document.querySelector("#card-info") || null;
+var $spanPrince = document.querySelector("#spanPrince") || null;
+var $selectSku = document.querySelector("#sku_id") || null;
+var $tdColor = document.querySelector("#tdColor") || null;
+var $tdFreno = document.querySelector("#tdFreno") || null;
+var $tdRin = document.querySelector("#tdRin") || null;
+var $tdVelocidad = document.querySelector("#tdVelocidad") || null;
+var $containerImage = document.querySelector("#containerImage") || null;
+
+var getPrice = /*#__PURE__*/function () {
+  var _ref = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee(idPrice) {
+    var url, response;
+    return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee$(_context) {
+      while (1) {
+        switch (_context.prev = _context.next) {
+          case 0:
+            url = "admin/precios/".concat(idPrice);
+            _context.prev = 1;
+            _context.next = 4;
+            return (0,_utils_FetchData__WEBPACK_IMPORTED_MODULE_1__.getData)(url);
+
+          case 4:
+            response = _context.sent;
+
+            if (!(response.ok === true && response.status === 200)) {
+              _context.next = 7;
+              break;
+            }
+
+            return _context.abrupt("return", response.data.data);
+
+          case 7:
+            _context.next = 12;
+            break;
+
+          case 9:
+            _context.prev = 9;
+            _context.t0 = _context["catch"](1);
+            console.log(_context.t0);
+
+          case 12:
+          case "end":
+            return _context.stop();
+        }
+      }
+    }, _callee, null, [[1, 9]]);
+  }));
+
+  return function getPrice(_x) {
+    return _ref.apply(this, arguments);
+  };
+}();
+
+var getSkus = /*#__PURE__*/function () {
+  var _ref2 = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee2(idCategory) {
+    var url, response;
+    return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee2$(_context2) {
+      while (1) {
+        switch (_context2.prev = _context2.next) {
+          case 0:
+            url = "admin/skusCategory/".concat(idCategory);
+            _context2.prev = 1;
+            _context2.next = 4;
+            return (0,_utils_FetchData__WEBPACK_IMPORTED_MODULE_1__.getData)(url);
+
+          case 4:
+            response = _context2.sent;
+
+            if (!(response.ok === true && response.status === 200)) {
+              _context2.next = 7;
+              break;
+            }
+
+            return _context2.abrupt("return", response.data.data);
+
+          case 7:
+            _context2.next = 12;
+            break;
+
+          case 9:
+            _context2.prev = 9;
+            _context2.t0 = _context2["catch"](1);
+            console.log(_context2.t0);
+
+          case 12:
+          case "end":
+            return _context2.stop();
+        }
+      }
+    }, _callee2, null, [[1, 9]]);
+  }));
+
+  return function getSkus(_x2) {
+    return _ref2.apply(this, arguments);
+  };
+}();
+
+var getAttributes = /*#__PURE__*/function () {
+  var _ref3 = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee3(idSku) {
+    var url, response;
+    return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee3$(_context3) {
+      while (1) {
+        switch (_context3.prev = _context3.next) {
+          case 0:
+            url = "admin/attributes/".concat(idSku);
+            _context3.prev = 1;
+            _context3.next = 4;
+            return (0,_utils_FetchData__WEBPACK_IMPORTED_MODULE_1__.getData)(url);
+
+          case 4:
+            response = _context3.sent;
+
+            if (!(response.ok === true && response.status === 200)) {
+              _context3.next = 7;
+              break;
+            }
+
+            return _context3.abrupt("return", response.data.data);
+
+          case 7:
+            _context3.next = 12;
+            break;
+
+          case 9:
+            _context3.prev = 9;
+            _context3.t0 = _context3["catch"](1);
+            console.log(_context3.t0);
+
+          case 12:
+          case "end":
+            return _context3.stop();
+        }
+      }
+    }, _callee3, null, [[1, 9]]);
+  }));
+
+  return function getAttributes(_x3) {
+    return _ref3.apply(this, arguments);
+  };
+}();
+
+var handleChangeReference = /*#__PURE__*/function () {
+  var _ref4 = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee4(idReference) {
+    var attributes, img, url;
+    return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee4$(_context4) {
+      while (1) {
+        switch (_context4.prev = _context4.next) {
+          case 0:
+            _context4.next = 2;
+            return getAttributes(parseInt(idReference));
+
+          case 2:
+            attributes = _context4.sent;
+            $tdColor.textContent = "";
+            $tdFreno.textContent = "";
+            $tdRin.textContent = "";
+            $tdVelocidad.textContent = "";
+            attributes.map(function (attribute) {
+              var $attr = attribute.attribute.toLowerCase();
+
+              switch ($attr) {
+                case "color":
+                  $tdColor.textContent = attribute.value;
+                  break;
+
+                case "brake":
+                  $tdFreno.textContent = attribute.value;
+                  break;
+
+                case "rin":
+                  $tdRin.textContent = attribute.value;
+                  break;
+
+                case "speed":
+                  $tdVelocidad.textContent = attribute.value + " KM/H";
+                  break;
+              }
+            });
+            $containerImage.innerHTML = "";
+            img = document.createElement("img");
+            img.classList.add("img-fluid");
+            url = window.location.origin + "/images/upload/" + attributes[0].sku.image;
+            img.src = url;
+            $containerImage.append(img);
+
+          case 14:
+          case "end":
+            return _context4.stop();
+        }
+      }
+    }, _callee4);
+  }));
+
+  return function handleChangeReference(_x4) {
+    return _ref4.apply(this, arguments);
+  };
+}();
+
+var handleChange = /*#__PURE__*/function () {
+  var _ref5 = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee5(idPrice) {
+    var price, references, arrayOption;
+    return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee5$(_context5) {
+      while (1) {
+        switch (_context5.prev = _context5.next) {
+          case 0:
+            _context5.next = 2;
+            return getPrice(idPrice);
+
+          case 2:
+            price = _context5.sent;
+            $card.querySelector(".card-header").textContent = "Bicicleta - " + price.category.name;
+            _context5.next = 6;
+            return getSkus(price.category.id);
+
+          case 6:
+            references = _context5.sent;
+            arrayOption = [];
+            $selectSku.innerHTML = "";
+            references.map(function (reference) {
+              var option = document.createElement("option");
+              option.value = reference.id;
+              option.textContent = reference = "".concat(reference.id, " - ").concat(reference.name);
+              arrayOption.push(option);
+            });
+            $selectSku.append.apply($selectSku, arrayOption);
+            handleChangeReference(parseInt($selectSku.value));
+            $selectSku.addEventListener("change", function (e) {
+              e.preventDefault();
+              handleChangeReference(parseInt(e.target.value));
+            });
+            $spanPrince.textContent = formatPrice(price.price);
+
+          case 14:
+          case "end":
+            return _context5.stop();
+        }
+      }
+    }, _callee5);
+  }));
+
+  return function handleChange(_x5) {
+    return _ref5.apply(this, arguments);
+  };
+}();
+
+var changeSelect = function changeSelect() {
+  if ($selectPrices) {
+    $selectPrices.addEventListener("change", function (e) {
+      e.preventDefault();
+      handleChange(parseInt(e.target.value));
+    });
+  }
+};
+
+var formatPrice = function formatPrice(price) {
+  var newPrice = new window.Intl.NumberFormat("en-EN", {
+    style: "currency",
+    currency: "USD"
+  }).format(price);
+  return newPrice;
+};
+
+var initViewPrices = function initViewPrices() {
+  window.addEventListener("DOMContentLoaded", /*#__PURE__*/_asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee6() {
+    return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee6$(_context6) {
+      while (1) {
+        switch (_context6.prev = _context6.next) {
+          case 0:
+            if (!$sectionPrices) {
+              _context6.next = 4;
+              break;
+            }
+
+            changeSelect();
+            _context6.next = 4;
+            return handleChange(parseInt($selectPrices.value));
+
+          case 4:
+          case "end":
+            return _context6.stop();
+        }
+      }
+    }, _callee6);
+  })));
+};
+
+
+
+/***/ }),
+
 /***/ "./resources/js/app.js":
 /*!*****************************!*\
   !*** ./resources/js/app.js ***!
@@ -2774,7 +3086,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _Admin_Categories_index_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Admin/Categories/index.js */ "./resources/js/Admin/Categories/index.js");
 /* harmony import */ var _Admin_Skus_index_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./Admin/Skus/index.js */ "./resources/js/Admin/Skus/index.js");
 /* harmony import */ var _Admin_Rentals_prices_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./Admin/Rentals/prices.js */ "./resources/js/Admin/Rentals/prices.js");
+/* harmony import */ var _Prices_index_js__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./Prices/index.js */ "./resources/js/Prices/index.js");
 __webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js");
+
 
 
 
@@ -2784,6 +3098,7 @@ __webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js");
 (0,_Admin_Categories_index_js__WEBPACK_IMPORTED_MODULE_1__.initCategories)();
 (0,_Admin_Skus_index_js__WEBPACK_IMPORTED_MODULE_2__.initSku)();
 (0,_Admin_Rentals_prices_js__WEBPACK_IMPORTED_MODULE_3__.initPrices)();
+(0,_Prices_index_js__WEBPACK_IMPORTED_MODULE_4__.initViewPrices)();
 
 /***/ }),
 
@@ -2860,13 +3175,26 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
  */
 var getData = /*#__PURE__*/function () {
   var _ref = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee(url, data) {
-    var urlFetch, config, response, _data;
+    var requireToken, token, urlLocation, urlFetch, config, response, _data;
 
     return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee$(_context) {
       while (1) {
         switch (_context.prev = _context.next) {
           case 0:
-            urlFetch = "http://127.0.0.1:8000/" + url;
+            // debugger;
+            requireToken = false;
+            token = "";
+            urlLocation = "";
+
+            if (window.location.hostname === "localhost") {
+              urlLocation = window.location.origin + "/unisimon-ecologitech-bike/public/";
+              requireToken = true;
+              token = document.querySelector("meta[name='csrf-token']").getAttribute("content");
+            } else {
+              urlLocation = window.location.origin + "/";
+            }
+
+            urlFetch = urlLocation + url;
 
             if (data) {
               config = {
@@ -2875,16 +3203,30 @@ var getData = /*#__PURE__*/function () {
               };
             }
 
-            _context.prev = 2;
-            _context.next = 5;
+            if (requireToken) {
+              if (config) {
+                config.headers = {
+                  "X-CSRF-TOKEN": token
+                };
+              } else {
+                config = {
+                  headers: {
+                    "X-CSRF-TOKEN": token
+                  }
+                };
+              }
+            }
+
+            _context.prev = 7;
+            _context.next = 10;
             return fetch(urlFetch, config);
 
-          case 5:
+          case 10:
             response = _context.sent;
-            _context.next = 8;
+            _context.next = 13;
             return response.json();
 
-          case 8:
+          case 13:
             _data = _context.sent;
             return _context.abrupt("return", {
               data: _data,
@@ -2892,17 +3234,17 @@ var getData = /*#__PURE__*/function () {
               status: response.status
             });
 
-          case 12:
-            _context.prev = 12;
-            _context.t0 = _context["catch"](2);
+          case 17:
+            _context.prev = 17;
+            _context.t0 = _context["catch"](7);
             console.log(_context.t0);
 
-          case 15:
+          case 20:
           case "end":
             return _context.stop();
         }
       }
-    }, _callee, null, [[2, 12]]);
+    }, _callee, null, [[7, 17]]);
   }));
 
   return function getData(_x, _x2) {
