@@ -24,10 +24,11 @@
                                         min="{{ date('Y-m-d') . 'T' . date('H:i') }}" required>
                                 </div>
                                 <div class="form-group">
-                                    <label for="category">Categorias</label>
+                                    <label for="category">Planes</label>
                                     <select class="form-control" id="category_id" name="category_id" required>
                                         @foreach ($rentalPricing as $rental)
-                                            <option value="{{ $rental->id }}">{{ $rental->category->name }}</option>
+                                            <option value="{{ $rental->id }}">Plan bicicleta -
+                                                {{ $rental->category->name }}</option>
                                         @endforeach
                                     </select>
                                 </div>

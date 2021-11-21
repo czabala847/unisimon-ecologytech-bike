@@ -36,23 +36,22 @@
         <div class="container">
             <div class="row">
                 <div class="col-12">
-                    <h2 class="mb-5">Servicios</h2>
+                    <h2 class="mb-5">Alquiler</h2>
 
                     <div class="row">
                         <article class="col-12 col-md-6">
                             <div class="card p-3 mb-3 mb-md-0 shadow rounded border-0">
                                 <div class="card-body">
-                                    <h4 class="my-3">Venta de bicicletas</h4>
+                                    <h4 class="my-3">Gestiona tu alquiler</h4>
                                     <p>
                                         Lorem ipsum dolor sit amet consectetur adipisicing elit. Alias, quae
                                         assumenda? Maxime ex eaque dignissimos quas, ipsam aut ut quaerat.
 
                                     </p>
                                     <button class="btn btn-primary">
-                                        Conoce más
+                                        Inicia sesión
                                     </button>
-
-                                    <i class="fas fa-shopping-basket Services__icon"></i>
+                                    <i class="fas fa-cogs Services__icon"></i>
 
                                 </div>
                             </div>
@@ -67,7 +66,7 @@
 
                                     </p>
                                     <a href="{{ url('/alquiler') }}" class="btn btn-secondary">
-                                        Conoce más
+                                        Alquilar
                                     </a>
 
                                     <i class="fas fa-calendar-alt Services__icon"></i>
@@ -81,17 +80,7 @@
         </div>
     </section>
 
-    <section class="Featured-products py-5 bg-light">
-        <div class="container">
-            <div class="row">
-                <div class="col-12">
-                    <h2 class="my-4">Productos <br />Destacados</h2>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section class="About py-5" id="acerca-de">
+    <section class="About py-5 bg-light" id="acerca-de">
         <div class="container">
             <div class="row">
                 <div class="col-12">
@@ -105,6 +94,14 @@
                         Lorem ipsum dolor sit amet consectetur adipisicing elit. Qui voluptatem quaerat labore
                         rem sunt nemo error accusantium autem, eum et excepturi. Dicta minima sunt veniam nobis
                         iusto, excepturi consequatur minus?
+                    </p>
+                    <p>
+                        Aliquam aliquet tempus semper. Donec ut sapien et eros pretium laoreet nec sit amet urna. Etiam sed
+                        volutpat tortor. In eget nulla sed eros rhoncus posuere lacinia vitae metus. Sed condimentum feugiat
+                        tellus, at condimentum leo aliquet eget. Pellentesque varius, erat et iaculis dictum, mauris dolor
+                        tincidunt magna, a feugiat odio lectus a libero. Nunc in sem luctus, rhoncus risus sed, viverra
+                        nisl. Mauris blandit mi sed ligula mattis blandit. Lorem ipsum dolor sit amet, consectetur
+                        adipiscing elit. Aliquam libero velit, placerat sit amet nunc at, euismod bibendum eros.
                     </p>
                 </div>
             </div>

@@ -1,4 +1,4 @@
-<section class="Contact py-5 bg-light" id="contactanos">
+<section class="Contact py-5" id="contactanos">
     <div class="container">
         <div class="row">
             <div class="col-12">
