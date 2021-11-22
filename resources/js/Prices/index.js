@@ -35,9 +35,9 @@ const createOption = (min) => {
 
         option.textContent = text;
 
-        if (parseInt(min) > index) {
-            option.disabled = true;
-        }
+        // if (parseInt(min) > index) {
+        //     option.disabled = true;
+        // }
 
         arrayOptions.push(option);
     }

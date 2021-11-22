@@ -50,43 +50,43 @@ class RentalController extends Controller
         return view('rentals.pay', compact(['dataRental', 'rentalPricing', 'sku', 'bike']));
     }
 
-    public function index()
-    {
-    }
-
-
-    public function create()
-    {
-        //
-    }
-
 
     public function store(Request $request)
     {
-        //
+
+        $bike = Bike::findOrFail($request->bike_id);
+
+        if ($bike->status == 'D') {
+            $request->validate(
+                [
+                    'bike_id' => ['required'],
+                    'date_start' => ['required'],
+                    'date_end' => ['required'],
+                    'total_hours' => ['required'],
+                    'total_pay' => ['required'],
+                    'card_number' => ['required'],
+                    'cvv' => ['required']
+                ]
+            );
+
+            Rental::create([
+                'user_id' => auth()->user()->id,
+            ] + $request->all());
+
+            $bike->status = 'P';
+            $bike->save();
+
+            // $sku = Sku::findOrFile($bike->sku_id);
+            // $sku->quantity
+
+            return redirect('alquiler/detalle')->with('status', 'Pagado con éxito');
+        }
+
+        return redirect('alquiler/detalle')->with('error', 'La bicicleta ya esta en prestamo');
     }
 
-
-    public function show(Rental $rental)
+    public function detail()
     {
-        //
-    }
-
-
-    public function edit(Rental $rental)
-    {
-        //
-    }
-
-
-    public function update(Request $request, Rental $rental)
-    {
-        //
-    }
-
-
-    public function destroy(Rental $rental)
-    {
-        //
+        return view('rentals.details');
     }
 }

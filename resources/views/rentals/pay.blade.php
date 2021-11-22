@@ -75,7 +75,10 @@
                                         </tr>
                                     </tbody>
                                 </table>
-                                <form class="w-100" style="overflow: hidden">
+                                <form action="{{ route('rental.store') }}" class="w-100" style="overflow: hidden"
+                                    method="POST">
+                                    @csrf
+                                    @method('POST')
                                     <div class="form-group row">
                                         <div class="col-9">
                                             <label for="card_numer">Número de tarjeta</label>
@@ -84,7 +87,7 @@
                                         </div>
                                         <div class="col-3">
                                             <label for="cvv">CVV</label>
-                                            <input type="number" class="form-control" name="cvv" id="cvv">
+                                            <input type="number" class="form-control" name="cvv" id="cvv" required>
                                         </div>
                                     </div>
                                     <input type="hidden" name="bike_id" id="bike_id" value="{{ $bike->id }}">
@@ -92,9 +95,9 @@
                                         value="{{ $dataRental['dateStart'] }} {{ $dataRental['timeStart'] . ':00:00' }}">
                                     <input type="hidden" name="date_end" id="date_end"
                                         value="{{ $dataRental['dateEnd'] }} {{ $dataRental['timeEnd'] . ':00:00' }}">
-                                    <input type="hidden" name="totalHours" id="totalHours"
+                                    <input type="hidden" name="total_hours" id="totalHours"
                                         value="{{ $dataRental['totalHours'] }}">
-                                    <input type="hidden" name="totalPay" id="totalPay"
+                                    <input type="hidden" name="total_pay" id="totalPay"
                                         value="{{ $rentalPricing->price * $dataRental['totalHours'] }}">
                                     <button type="submit" class="btn btn-primary"><i class="fas fa-dollar-sign"></i>
                                         Pagar</button>

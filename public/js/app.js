@@ -3029,11 +3029,9 @@ var createOption = function createOption(min) {
       text = "".concat(index, " : 00");
     }
 
-    option.textContent = text;
-
-    if (parseInt(min) > index) {
-      option.disabled = true;
-    }
+    option.textContent = text; // if (parseInt(min) > index) {
+    //     option.disabled = true;
+    // }
 
     arrayOptions.push(option);
   }
