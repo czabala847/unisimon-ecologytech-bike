@@ -6,6 +6,7 @@ import { initSku } from "./Admin/Skus/index.js";
 import { initPrices } from "./Admin/Rentals/prices.js";
 import { initViewPrices } from "./Prices/index.js";
 import { initBikes } from "./Admin/Bikes/index.js";
+import { initUsers } from "./Admin/Users/index.js";
 
 initHome();
 initCategories();
@@ -13,3 +14,4 @@ initSku();
 initPrices();
 initViewPrices();
 initBikes();
+initUsers();

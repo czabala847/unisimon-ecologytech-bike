@@ -2926,6 +2926,50 @@ var initSku = function initSku() {
 
 /***/ }),
 
+/***/ "./resources/js/Admin/Users/index.js":
+/*!*******************************************!*\
+  !*** ./resources/js/Admin/Users/index.js ***!
+  \*******************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "initUsers": () => (/* binding */ initUsers)
+/* harmony export */ });
+var $sectionUsers = document.querySelector(".Users") || null;
+var $table = document.querySelector("#users_table") || null;
+
+var initDataTable = function initDataTable() {
+  if ($table) {
+    $("#users_table").DataTable({
+      // dom: "Bfrtip",
+      // buttons: ["copy", "csv", "excel", "pdf", "print"],
+      aProcessing: true,
+      aServerSide: true,
+      language: {
+        url: "//cdn.datatables.net/plug-ins/1.10.20/i18n/Spanish.json"
+      },
+      pageLength: 25,
+      responsive: "true",
+      bDestroy: true,
+      order: [[0, "asc"]]
+    });
+  }
+};
+
+var initUsers = function initUsers() {
+  window.addEventListener("DOMContentLoaded", function () {
+    if ($sectionUsers) {
+      initDataTable();
+    }
+  });
+};
+
+
+
+/***/ }),
+
 /***/ "./resources/js/Home/index.js":
 /*!************************************!*\
   !*** ./resources/js/Home/index.js ***!
@@ -3407,7 +3451,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _Admin_Rentals_prices_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./Admin/Rentals/prices.js */ "./resources/js/Admin/Rentals/prices.js");
 /* harmony import */ var _Prices_index_js__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./Prices/index.js */ "./resources/js/Prices/index.js");
 /* harmony import */ var _Admin_Bikes_index_js__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./Admin/Bikes/index.js */ "./resources/js/Admin/Bikes/index.js");
+/* harmony import */ var _Admin_Users_index_js__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./Admin/Users/index.js */ "./resources/js/Admin/Users/index.js");
 __webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js");
+
 
 
 
@@ -3421,6 +3467,7 @@ __webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js");
 (0,_Admin_Rentals_prices_js__WEBPACK_IMPORTED_MODULE_3__.initPrices)();
 (0,_Prices_index_js__WEBPACK_IMPORTED_MODULE_4__.initViewPrices)();
 (0,_Admin_Bikes_index_js__WEBPACK_IMPORTED_MODULE_5__.initBikes)();
+(0,_Admin_Users_index_js__WEBPACK_IMPORTED_MODULE_6__.initUsers)();
 
 /***/ }),
 

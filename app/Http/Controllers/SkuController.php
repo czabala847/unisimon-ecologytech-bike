@@ -91,11 +91,6 @@ class SkuController extends Controller
         return back()->with('error', 'Ya existe el SKU');
     }
 
-    public function show(Sku $sku)
-    {
-        //
-    }
-
     public function edit(Sku $sku)
     {
         $sku = Sku::findOrFail($sku->id);

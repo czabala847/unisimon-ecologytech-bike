@@ -14,29 +14,31 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('welcome'); //Publica
 });
 
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/home', 'HomeController@index')->name('home'); //compartida
 
-Route::resource('admin/categorias', 'CategoryController')->names('categories')->except(['create', 'edit']);
+Route::resource('admin/categorias', 'CategoryController')->names('categories')->except(['create', 'edit']); //admin
 
-Route::resource('admin/bicicletas', 'BikeController')->names('bikes')->except(['create', 'edit']);
+Route::resource('admin/bicicletas', 'BikeController')->names('bikes')->except(['create', 'edit']); //admin
 
-Route::get('admin/skusCategory/{idCategory}', 'SkuController@skusForCategory');
-Route::get('admin/skusAvailable/{id}', 'SkuController@available');
-Route::resource('admin/skus', 'SkuController')->names('skus');
+Route::get('admin/skusCategory/{idCategory}', 'SkuController@skusForCategory'); //publica
+Route::get('admin/skusAvailable/{id}', 'SkuController@available'); //publica
+Route::resource('admin/skus', 'SkuController')->names('skus'); //admin
 
-Route::get('alquiler/detallePDF/{id}', 'RentalController@rentalPDF')->name('rental.detailPdf');
-Route::get('alquiler/detalle', 'RentalController@detail')->name('rental.detail');
-Route::post('alquiler/pagar', 'RentalController@pay')->name('rental.pay');
-Route::post('alquiler/guardar', 'RentalController@store')->name('rental.store');
+Route::get('alquiler/detallePDF/{id}', 'RentalController@rentalPDF')->name('rental.detailPdf'); //compartida **
+Route::get('alquiler/detalle', 'RentalController@detail')->name('rental.detail'); //compartida **
+Route::post('alquiler/pagar', 'RentalController@pay')->name('rental.pay'); //compartida
+Route::post('alquiler/guardar', 'RentalController@store')->name('rental.store'); //compartida
 
-Route::get('alquiler', 'RentalPricingController@pricesView');
-Route::get('alquiler/show', 'RentalPricingController@getRentalPricing');
-Route::resource('admin/precios', 'RentalPricingController')->names('prices')->except(['create', 'edit']);
+Route::get('alquiler', 'RentalPricingController@pricesView'); //Publica
+Route::get('alquiler/show', 'RentalPricingController@getRentalPricing'); //Publica
+Route::resource('admin/precios', 'RentalPricingController')->names('prices')->except(['create', 'edit']); //admin
 
-Route::get('admin/attributes/{idSku}', 'AttributeController@getAttributes');
+Route::get('admin/attributes/{idSku}', 'AttributeController@getAttributes'); //Publica
+
+Route::resource('admin/users', 'userController')->names('users'); //admin
 // Route::get('/alquiler', '')

@@ -286,6 +286,12 @@ return [
                 ],
             ],
         ],
+        [
+            'text'        => 'Usuarios',
+            'url'         => 'admin/users',
+            'icon'        => 'fas fa-users',
+            'label_color' => 'success',
+        ],
         // ['header' => 'account_settings'],
         // [
         //     'text' => 'profile',

@@ -12,12 +12,21 @@ class DatabaseSeeder extends Seeder
     public function run()
     {
         // $this->call(UserSeeder::class);
+        $this->call(RoleSeeder::class);
         App\User::create(
             [
                 'name' => 'Carlos Zabala',
-                'email' => 'carlos@example.com',
+                'email' => 'admin@example.com',
                 'password' => bcrypt('123456')
             ]
-        );
+        )->assignRole('Admin');
+
+        App\User::create(
+            [
+                'name' => 'Cliente Prueba',
+                'email' => 'cliente@example.com',
+                'password' => bcrypt('123456')
+            ]
+        )->assignRole('Client');
     }
 }
