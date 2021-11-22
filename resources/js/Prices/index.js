@@ -62,6 +62,7 @@ const getPrice = async (idPrice) => {
         }
     } catch (error) {
         console.log(error);
+        debugger;
     }
 };
 

@@ -3071,15 +3071,16 @@ var getPrice = /*#__PURE__*/function () {
             return _context.abrupt("return", response.data.data);
 
           case 7:
-            _context.next = 12;
+            _context.next = 13;
             break;
 
           case 9:
             _context.prev = 9;
             _context.t0 = _context["catch"](1);
             console.log(_context.t0);
+            debugger;
 
-          case 12:
+          case 13:
           case "end":
             return _context.stop();
         }

@@ -8,7 +8,7 @@ use Illuminate\Http\Request;
 class AttributeController extends Controller
 {
 
-    public function getAttributes(int $idSku)
+    public function getAttributes($idSku)
     {
         $attribute = Attribute::with('Sku')->where('sku_id', $idSku)->get();
 

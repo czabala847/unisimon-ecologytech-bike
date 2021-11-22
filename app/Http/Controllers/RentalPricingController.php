@@ -44,14 +44,26 @@ class RentalPricingController extends Controller
     }
 
 
-    public function show(int $rentalPricing)
+    public function show($rentalPricing)
     {
-        $price = RentalPricing::with('category')->findOrFail($rentalPricing);
+
+        if (is_numeric($rentalPricing)) {
+            $price = RentalPricing::with('category')->findOrFail($rentalPricing);
+
+            return response()->json(
+                [
+                    'success' => true,
+                    'data' => $price
+                ],
+                200
+            );
+        }
 
         return response()->json(
             [
-                'success' => true,
-                'data' => $price
+                'success' => false,
+                'data' => [],
+                'msg' => "id no valido."
             ],
             200
         );

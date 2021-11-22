@@ -179,7 +179,7 @@ class SkuController extends Controller
         );
     }
 
-    public function available(int $id)
+    public function available($id)
     {
 
         $quantity = Bike::where([
