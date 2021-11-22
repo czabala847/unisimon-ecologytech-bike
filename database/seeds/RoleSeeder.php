@@ -35,9 +35,18 @@ class RoleSeeder extends Seeder
         Permission::create(['name' => 'prices.update'])->assignRole($role1);
         Permission::create(['name' => 'prices.destroy'])->assignRole($role1);
 
+        Permission::create(['name' => 'bikes.index'])->assignRole($role1);
+        Permission::create(['name' => 'bikes.store'])->assignRole($role1);
+        Permission::create(['name' => 'bikes.update'])->assignRole($role1);
+        Permission::create(['name' => 'bikes.destroy'])->assignRole($role1);
+
         Permission::create(['name' => 'rental.detailPdf'])->syncRoles([$role1, $role2]);
         Permission::create(['name' => 'rental.detail'])->syncRoles([$role1, $role2]);
         Permission::create(['name' => 'rental.pay'])->syncRoles([$role1, $role2]);
         Permission::create(['name' => 'rental.store'])->syncRoles([$role1, $role2]);
+
+        Permission::create(['name' => 'users.index'])->syncRoles([$role1]);
+        Permission::create(['name' => 'users.edit'])->syncRoles([$role1]);
+        Permission::create(['name' => 'users.update'])->syncRoles([$role1]);
     }
 }

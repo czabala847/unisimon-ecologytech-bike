@@ -19,15 +19,15 @@ Route::get('/', function () {
 
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home'); //compartida
+Route::get('/home', 'HomeController@index')->name('home')->middleware('can:home'); //compartida
 
-Route::resource('admin/categorias', 'CategoryController')->names('categories')->except(['create', 'edit']); //admin
+Route::resource('admin/categorias', 'CategoryController')->names('categories')->except(['create', 'edit'])->middleware('can:categories.index'); //admin
 
-Route::resource('admin/bicicletas', 'BikeController')->names('bikes')->except(['create', 'edit']); //admin
+Route::resource('admin/bicicletas', 'BikeController')->names('bikes')->except(['create', 'edit'])->middleware('can:categories.index'); //admin
 
 Route::get('admin/skusCategory/{idCategory}', 'SkuController@skusForCategory'); //publica
 Route::get('admin/skusAvailable/{id}', 'SkuController@available'); //publica
-Route::resource('admin/skus', 'SkuController')->names('skus'); //admin
+Route::resource('admin/skus', 'SkuController')->names('skus')->middleware('can:categories.index'); //admin
 
 Route::get('alquiler/detallePDF/{id}', 'RentalController@rentalPDF')->name('rental.detailPdf'); //compartida **
 Route::get('alquiler/detalle', 'RentalController@detail')->name('rental.detail'); //compartida **
@@ -40,5 +40,5 @@ Route::resource('admin/precios', 'RentalPricingController')->names('prices')->ex
 
 Route::get('admin/attributes/{idSku}', 'AttributeController@getAttributes'); //Publica
 
-Route::resource('admin/users', 'userController')->names('users'); //admin
+Route::resource('admin/usuarios', 'userController')->names('users')->only(['index', 'edit', 'update'])->middleware('can:users.index'); //admin
 // Route::get('/alquiler', '')

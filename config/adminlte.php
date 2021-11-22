@@ -251,18 +251,22 @@ return [
             'url'         => 'admin/categorias',
             'icon'        => 'fas fa-tags',
             'label_color' => 'success',
+            'can'         => 'categories.index'
         ],
         [
             'text'        => 'Referencias',
             'icon'        => 'fas fa-bookmark',
+            'can'         => 'skus.index',
             'submenu' => [
                 [
                     'text' => 'Lista',
                     'url'  => 'admin/skus',
+                    'can'  => 'skus.index'
                 ],
                 [
                     'text' => 'Nuevo',
                     'url'  => 'admin/skus/create',
+                    'can'  => 'skus.create'
                 ],
             ],
         ],
@@ -271,6 +275,7 @@ return [
             'url'         => 'admin/bicicletas',
             'icon'        => 'fas fa-bicycle',
             'label_color' => 'success',
+            'can'         => 'bikes.index'
         ],
         [
             'text'        => 'Alquiler',
@@ -279,18 +284,21 @@ return [
                 [
                     'text' => 'Precios',
                     'url'  => 'admin/precios',
+                    'can'  => 'prices.index'
                 ],
                 [
                     'text' => 'Alquileres',
                     'url'  => 'alquiler/detalle',
+                    'can' => 'rental.detail'
                 ],
             ],
         ],
         [
             'text'        => 'Usuarios',
-            'url'         => 'admin/users',
+            'url'         => 'admin/usuarios',
             'icon'        => 'fas fa-users',
             'label_color' => 'success',
+            'can'         => 'users.index'
         ],
         // ['header' => 'account_settings'],
         // [

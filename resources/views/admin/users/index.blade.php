@@ -5,7 +5,7 @@
 @section('content_header')
     <div class="d-flex my-3">
         <h1 class="d-inline">Usuarios</h1>
-        <button class="btn btn-primary ml-2" id="btnNewCategory"><i class="fas fa-plus-circle"></i> Nuevo</button>
+        {{-- <button class="btn btn-primary ml-2" id="btnNewCategory"><i class="fas fa-plus-circle"></i> Nuevo</button> --}}
     </div>
 @stop
 
@@ -62,10 +62,11 @@
                                     <td>{{ $user->name }}</td>
                                     <td>{{ $user->email }}</td>
                                     <td>
-                                        <button data-id={{ $user->id }} data-action="edit" class="btn btn-warning">
+                                        <a data-id={{ $user->id }} data-action="edit"
+                                            href="{{ route('users.edit', $user) }}" class="btn btn-warning">
                                             <i class="fas fa-edit"></i>
                                             <span>Editar</span>
-                                        </button>
+                                        </a>
                                     </td>
                                 </tr>
                             @endforeach
@@ -76,41 +77,6 @@
         </div>
     </section>
 
-    <!-- Modal -->
-    <div class="modal fade" id="modalUser" tabindex="-1" aria-labelledby="modalUserLabel" aria-hidden="true">
-        <div class="modal-dialog modal-xl">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="modalUserLabel">Nuevo Usuario</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <form id="form-category" autocomplete="off" method="POST" data-url="{{ route('users.store') }}"
-                        action="{{ route('users.store') }}">
-
-                        <div class="form-group">
-                            <label for="name">Nombre</label>
-                            <input type="text" name="name" class="form-control" id="name" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="description">Descripción</label>
-                            <textarea name="description" name="description" class="form-control" id="description"
-                                cols="30" rows="3" aria-expanded="false" required></textarea>
-                        </div>
-                        <button type="submit" class="btn btn-primary"><i class="fas fa-save"></i> Guardar</button>
-                        @csrf
-                        @method('POST')
-                    </form>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-                </div>
-
-            </div>
-        </div>
-    </div>
 @stop
 
 @section('css')
