@@ -7,6 +7,7 @@ use App\RentalPricing;
 use App\Sku;
 use App\Bike;
 use App\Attribute;
+use App\User;
 use Illuminate\Http\Request;
 
 class RentalController extends Controller
@@ -88,7 +89,12 @@ class RentalController extends Controller
 
     public function detail()
     {
-        $rentals = Rental::where('user_id', '=', auth()->user()->id)->get();
+
+        if (auth()->user()->roles[0]->name === 'Admin') {
+            $rentals = Rental::all();
+        } else {
+            $rentals = Rental::where('user_id', '=', auth()->user()->id)->get();
+        }
 
         return view('rentals.details', compact('rentals'));
     }
@@ -97,7 +103,7 @@ class RentalController extends Controller
     {
 
         $rental = Rental::findOrFail($id);
-        $user = auth()->user();
+        $user = User::findOrFail($rental->user_id);
         $bike = Bike::findOrFail($rental->bike_id);
         $attrs = Attribute::where('sku_id', '=', $bike->sku_id)->get();
 

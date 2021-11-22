@@ -29,10 +29,10 @@ Route::get('admin/skusCategory/{idCategory}', 'SkuController@skusForCategory'); 
 Route::get('admin/skusAvailable/{id}', 'SkuController@available'); //publica
 Route::resource('admin/skus', 'SkuController')->names('skus')->middleware('can:categories.index'); //admin
 
-Route::get('alquiler/detallePDF/{id}', 'RentalController@rentalPDF')->name('rental.detailPdf'); //compartida **
-Route::get('alquiler/detalle', 'RentalController@detail')->name('rental.detail'); //compartida **
-Route::post('alquiler/pagar', 'RentalController@pay')->name('rental.pay'); //compartida
-Route::post('alquiler/guardar', 'RentalController@store')->name('rental.store'); //compartida
+Route::get('alquiler/detallePDF/{id}', 'RentalController@rentalPDF')->name('rental.detailPdf')->middleware('can:rental.detailPdf'); //compartida **
+Route::get('alquiler/detalle', 'RentalController@detail')->name('rental.detail')->middleware('can:rental.detailPdf'); //compartida **
+Route::post('alquiler/pagar', 'RentalController@pay')->name('rental.pay')->middleware('can:rental.pay'); //compartida
+Route::post('alquiler/guardar', 'RentalController@store')->name('rental.store')->middleware('can:rental.pay'); //compartida
 
 Route::get('alquiler', 'RentalPricingController@pricesView'); //Publica
 Route::get('alquiler/show', 'RentalPricingController@getRentalPricing'); //Publica

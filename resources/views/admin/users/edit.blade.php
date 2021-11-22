@@ -66,7 +66,7 @@
                                 </label>
                             </div>
                         @endforeach
-                        {{-- {{ $user->roles }} --}}
+                        {{ $user->roles }}
                     </div>
                     <button type="submit" class="btn btn-primary"><i class="fas fa-save"></i> Guardar</button>
                     @csrf

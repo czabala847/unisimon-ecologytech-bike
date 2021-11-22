@@ -50,6 +50,9 @@
                             <tr>
                                 <th scope="col">Id</th>
                                 <th scope="col">Código Bicicleta</th>
+                                @if (auth()->user()->roles[0]->name === 'Admin')
+                                    <th>Cliente</th>
+                                @endif
                                 <th scope="col">SKU</th>
                                 <th scope="col">Referencia</th>
                                 <th scope="col">Fecha de recogida</th>
@@ -64,6 +67,9 @@
                                 <tr>
                                     <th scope="row">{{ $rental->id }}</th>
                                     <td>{{ $rental->bike->code }}</td>
+                                    @if (auth()->user()->roles[0]->name === 'Admin')
+                                        <th>{{ $rental->user->name }}</th>
+                                    @endif
                                     <td>{{ $rental->bike->sku->sku }}</td>
                                     <td>{{ $rental->bike->sku->name }}</td>
                                     <td>{{ $rental->date_start }}</td>
@@ -95,4 +101,24 @@
 @section('js')
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="/js/app.js"></script>
+    <script>
+        const $table = document.querySelector("#alquileres_table") || null;
+        if ($table) {
+            $("#alquileres_table").DataTable({
+                // dom: "Bfrtip",
+                // buttons: ["copy", "csv", "excel", "pdf", "print"],
+                aProcessing: true,
+                aServerSide: true,
+                language: {
+                    url: "//cdn.datatables.net/plug-ins/1.10.20/i18n/Spanish.json",
+                },
+                pageLength: 25,
+                responsive: "true",
+                bDestroy: true,
+                order: [
+                    [0, "asc"]
+                ],
+            });
+        }
+    </script>
 @stop

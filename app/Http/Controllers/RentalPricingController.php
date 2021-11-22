@@ -12,6 +12,7 @@ class RentalPricingController extends Controller
     public function __construct()
     {
         $this->middleware('auth', ['except' => ['pricesView', 'getRentalPricing', 'show']]);
+        $this->middleware('can:prices.index')->only('index', 'store', 'update', 'destroy');
     }
 
     public function index()
