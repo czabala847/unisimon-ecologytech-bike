@@ -48,9 +48,9 @@
                                         assumenda? Maxime ex eaque dignissimos quas, ipsam aut ut quaerat.
 
                                     </p>
-                                    <button class="btn btn-primary">
+                                    <a class="btn btn-primary" href="{{ url('login') }}">
                                         Inicia sesión
-                                    </button>
+                                    </a>
                                     <i class="fas fa-cogs Services__icon"></i>
 
                                 </div>

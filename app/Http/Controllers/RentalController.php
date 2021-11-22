@@ -87,6 +87,8 @@ class RentalController extends Controller
 
     public function detail()
     {
-        return view('rentals.details');
+        $rentals = Rental::where('user_id', '=', auth()->user()->id)->get();
+
+        return view('rentals.details', compact('rentals'));
     }
 }

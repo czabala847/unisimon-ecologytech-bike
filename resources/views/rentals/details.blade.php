@@ -43,7 +43,45 @@
         @endif
 
         <div class="card">
-
+            <div class="card-body">
+                <div class="table-responsive">
+                    <table class="table" id="alquileres_table">
+                        <thead>
+                            <tr>
+                                <th scope="col">Id</th>
+                                <th scope="col">Código Bicicleta</th>
+                                <th scope="col">SKU</th>
+                                <th scope="col">Referencia</th>
+                                <th scope="col">Fecha de recogida</th>
+                                <th scope="col">Fecha de entrega</th>
+                                <th scope="col">Horas Alquiladas</th>
+                                <th scope="col">Total Pagado</th>
+                                <th scope="col">Opciones</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach ($rentals as $rental)
+                                <tr>
+                                    <th scope="row">{{ $rental->id }}</th>
+                                    <td>{{ $rental->bike->code }}</td>
+                                    <td>{{ $rental->bike->sku->sku }}</td>
+                                    <td>{{ $rental->bike->sku->name }}</td>
+                                    <td>{{ $rental->date_start }}</td>
+                                    <td>{{ $rental->date_end }}</td>
+                                    <td>{{ number_format($rental->total_hours) }}</td>
+                                    <td>$ {{ number_format($rental->total_pay) }}</td>
+                                    <td>
+                                        <a href="{{ route('skus.edit', $rental) }}" class="btn btn-success">
+                                            <i class="fas fa-file-pdf"></i>
+                                            <span>PDF</span>
+                                        </a>
+                                    </td>
+                                </tr>
+                            @endforeach
+                        </tbody>
+                    </table>
+                </div>
+            </div>
         </div>
     </section>
 

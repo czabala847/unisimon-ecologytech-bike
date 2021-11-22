@@ -89,6 +89,12 @@ class BikeController extends Controller
         $bikeDelete = Bike::find($bike);
         $sku = Sku::find($bikeDelete->sku_id);
 
+        if ($bikeDelete->rentals->count() > 0) {
+
+            return back()->with('error', 'No se puede eliminar la bicicleta porque actualmente esta en prestamo.');
+        }
+
+
         $bikeDelete->delete();
 
         $sku->quantity = $sku->quantity - 1;

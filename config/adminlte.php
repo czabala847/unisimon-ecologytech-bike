@@ -280,6 +280,10 @@ return [
                     'text' => 'Precios',
                     'url'  => 'admin/precios',
                 ],
+                [
+                    'text' => 'Alquileres',
+                    'url'  => 'alquiler/detalle',
+                ],
             ],
         ],
         // ['header' => 'account_settings'],
