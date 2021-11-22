@@ -71,7 +71,8 @@
                                     <td>{{ number_format($rental->total_hours) }}</td>
                                     <td>$ {{ number_format($rental->total_pay) }}</td>
                                     <td>
-                                        <a href="{{ route('skus.edit', $rental) }}" class="btn btn-success">
+                                        <a target="_blank" href="{{ url('alquiler/detallePDF') . '/' . $rental->id }} "
+                                            class="btn btn-success">
                                             <i class="fas fa-file-pdf"></i>
                                             <span>PDF</span>
                                         </a>

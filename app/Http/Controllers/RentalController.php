@@ -6,6 +6,7 @@ use App\Rental;
 use App\RentalPricing;
 use App\Sku;
 use App\Bike;
+use App\Attribute;
 use Illuminate\Http\Request;
 
 class RentalController extends Controller
@@ -90,5 +91,17 @@ class RentalController extends Controller
         $rentals = Rental::where('user_id', '=', auth()->user()->id)->get();
 
         return view('rentals.details', compact('rentals'));
+    }
+
+    public function rentalPDF($id)
+    {
+
+        $rental = Rental::findOrFail($id);
+        $user = auth()->user();
+        $bike = Bike::findOrFail($rental->bike_id);
+        $attrs = Attribute::where('sku_id', '=', $bike->sku_id)->get();
+
+        $pdf = \PDF::loadView('rentals.detailPDF', compact(['rental', 'user', 'bike', 'attrs']));
+        return $pdf->stream('DetalleAlquiler.pdf');
     }
 }

@@ -29,6 +29,7 @@ Route::get('admin/skusCategory/{idCategory}', 'SkuController@skusForCategory');
 Route::get('admin/skusAvailable/{id}', 'SkuController@available');
 Route::resource('admin/skus', 'SkuController')->names('skus');
 
+Route::get('alquiler/detallePDF/{id}', 'RentalController@rentalPDF')->name('rental.detailPdf');
 Route::get('alquiler/detalle', 'RentalController@detail')->name('rental.detail');
 Route::post('alquiler/pagar', 'RentalController@pay')->name('rental.pay');
 Route::post('alquiler/guardar', 'RentalController@store')->name('rental.store');
@@ -38,6 +39,4 @@ Route::get('alquiler/show', 'RentalPricingController@getRentalPricing');
 Route::resource('admin/precios', 'RentalPricingController')->names('prices')->except(['create', 'edit']);
 
 Route::get('admin/attributes/{idSku}', 'AttributeController@getAttributes');
-
-
 // Route::get('/alquiler', '')
